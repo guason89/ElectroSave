@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ElectroSave.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test',
+        'NAME': 'ElectroSaveDB',
         'USER': 'postgres',
         'PASSWORD': 'g',
         'HOST': 'localhost',
