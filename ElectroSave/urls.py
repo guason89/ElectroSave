@@ -16,15 +16,18 @@ Including another URLconf
 from django.conf.urls import url
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , include
 from apps.Inicio.views import Home
 from django.contrib.auth.views import login, logout_then_login
-from apps.Inicio.views import Loguear
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicio/', Home, name  = 'home'),
+    path('inicio/', login_required(Home), name  = 'home'),
     url(r'^$', login,{'template_name':'login.html'}, name='login'),
-    url(r'^lsdfsdf/', logout_then_login, name='logout'),
-    url(r'^url prueba1/', logout_then_login, name='logout'),
+    path('accounts/login/', login,{'template_name':'login.html'}, name='login'),
+    path('logout', logout_then_login, name='salir'), 
+
+    #incluir rutas de cada aplicacion
+    path ( 'proveedores/' , include ( 'apps.Proveedores.urls' )),   
 ]

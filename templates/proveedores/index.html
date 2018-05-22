@@ -1,0 +1,48 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Proveedores</h3>
+				<div class="float-right">
+					<a href="{%url 'proveedores.nuevo'%}" class="btn btn-success" title="Nuevo proveedor"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>		     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered">
+					<thead>
+						<tr>
+							<th width="10%">No.</th>
+							<th width="20%">NOMBRE</th>
+							<th width="30%">DIRECCIÓN</th>
+							<th width="10%">NÚMERO CONTACTO</th>
+							<th width="20%">RESPONSABLE</th>
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for proveedor in object_list%}
+						<tr>
+							<td>{{proveedor.id_proveedor}}</td>
+							<td>{{proveedor.nombre}}</td>
+							<td>{{proveedor.direccion}}</td>
+							<td>{{proveedor.numero_de_contacto}}</td>
+							<td>{{proveedor.id_responsable}}</td>
+							<td class="btn-group d-flex">
+								<a class="btn btn-secondary" title="Eliminar" href="#}"><span class="icon-trash "></span></a>
+								<a class="btn btn-secondary" title="Editar" href="#"><span class="icon-pencil"></span></a>
+								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-eye-open"></span></a>
+							</td>
+						</tr>
+					{%endfor%}
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
