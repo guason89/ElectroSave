@@ -5,30 +5,17 @@
 				<h3 class="panel-title">Insertar Proveedor</h3>						     
 		</div>
 		<div class="panel-body">		
-			<form method="post" class="form form-vertical" role="form" id="frm_proveedor_nuevo">
+			<form method="post" class="form form-vertical" id="frm_proveedor_nuevo" autocomplete="off" action="{% url 'proveedores.nuevo' %}">
 				{%csrf_token%}			
 				<div class="row justify-content-md-center"> 
-			        <div class="form-group col-md-8">			          
-			            <div class="input-group"><b>NOMBRE</b></div>		
-			            {{form.nombre}}		                      
+
+			    {%for element in form %}
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{element.label}}</b></div>		
+			            {{element}}
+			            <div class="error">{{element.errors}}</div>	                      
 			        </div>
-			        <div class="form-group col-md-8">			          
-			        	<div class="input-group"><b>DIRECCIÓN</b></div>		                        
-			            {{form.direccion}}      
-			                      
-			        </div>
-			        <div class="form-group col-md-8">			        
-			            <div class="input-group"><b>NÚMERO DE CONTACTO</b></div>
-			            {{form.numero_de_contacto}}                  
-			        </div>
-			        <div class="form-group col-md-8">			        
-			            <div class="input-group"><b>EMAIL</b></div>
-			            {{form.email}}                  
-			        </div>
-			        <div class="form-group col-md-8">			        
-			            <div class="input-group"><b>NIT</b></div>
-			            {{form.nit}}                  
-			        </div>			       
+				{% endfor %}			       
 			    </div>
 				
 			</form>
@@ -36,6 +23,7 @@
 		</div>
 		<div class="panel-footer">
 			<button type="submit" class="btn btn-success" form="frm_proveedor_nuevo">GUARDAR</button>
+			<a href="{%url 'proveedores.index'%}" class="btn btn-secondary">Regresar</a>
 		</div>
 	</div>
 	

@@ -2,10 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView
 from apps.Proveedores import models
-from apps.Proveedores.forms import ProveedorForm
+from apps.Proveedores import forms
+from django.urls import reverse
 
-def index ( request ):
-    return render(request,'proveedores/index.html')
 
 
 class ProveedorList (ListView):
@@ -14,8 +13,10 @@ class ProveedorList (ListView):
 
 class ProveedorCreate (CreateView):
 	model = models.Proveedor
-	form_class = ProveedorForm
+	form_class = forms.ProveedorForm
 	template_name = 'proveedores/nuevo.html' 
-	success_url = '/proveedores'
+	
+	def get_success_url(self):
+		return reverse('proveedores.index')
 
 
