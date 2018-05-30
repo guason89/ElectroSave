@@ -31,9 +31,9 @@
 							<td>{{p.telefono_1}}</td>
 							<td>{{p.responsable}}</td>
 							<td class="btn-group d-flex">
-								<a class="btn btn-secondary" title="Eliminar" href="#}"><span class="icon-trash "></span></a>
-								<a class="btn btn-secondary" title="Editar" href="#"><span class="icon-pencil"></span></a>
-								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-eye-open"></span></a>
+								<a class="btn btn-secondary" title="Eliminar" href="{% url 'proveedores.eliminar' pk=p.id_proveedor %}"><span class="icon-trash "></span></a>
+								<a class="btn btn-secondary" title="Editar" href="{%url 'proveedores.actualizar' pk=p.id_proveedor%}"><span class="icon-pencil"></span></a>
+								<a class="btn btn-secondary" title="Detalles" href="{{p.get_detalle_url}}"><span class="icon-th"></span></a>
 							</td>
 						</tr>
 					{%endfor%}		

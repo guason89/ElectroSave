@@ -2,10 +2,15 @@
 {%block contenido%}
 <div class="panel panel-success">
 		<div class="panel-heading">
-				<h3 class="panel-title">Insertar Proveedor</h3>						     
+			{% if proveedor.id_proveedor %}
+			<h3 class="panel-title">Editar Proveedor</h3>
+			{% else %}
+			<h3 class="panel-title">Insertar Proveedor</h3>
+			{% endif %}
+										     
 		</div>
 		<div class="panel-body">		
-			<form method="post" class="form form-vertical" id="frm_proveedor_nuevo" autocomplete="off" action="{% url 'proveedores.nuevo' %}">
+			<form method="post" class="form form-vertical" id="frm_proveedor_nuevo" autocomplete="off">
 				{%csrf_token%}			
 				<div class="row justify-content-md-center"> 
 

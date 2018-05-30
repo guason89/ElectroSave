@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
     
 class Proveedor(models.Model):
     id_proveedor = models.AutoField(primary_key=True)
@@ -18,6 +19,9 @@ class Proveedor(models.Model):
 
     def __str__ ( self ):
         return self.nombre
+
+    def get_detalle_url(self):
+        return reverse('proveedores.detalles',kwargs={'pk':self.id_proveedor})
 
    
 

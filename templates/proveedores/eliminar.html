@@ -1,0 +1,67 @@
+{%extends 'master.html'%}
+{%block contenido%}
+<div class="panel panel-danger">
+		<div class="panel-heading">
+				<h3 class="panel-title">Eliminar Proveedor</h3>						     
+		</div>
+		<div class="panel-body">
+			<p class="error">Esta seguro que desea eliminar el proveedor : {{ proveedor }}?</p>		
+			<table class="table table-striped">
+				<tr>
+					<td width="30%">NOMBRE: </td>
+					<td width="70%">{{proveedor.nombre }}</td>
+				</tr>
+				<tr>
+					<td>DIRECCIÓN: </td>
+					<td>{{proveedor.direccion }}</td>
+				</tr>
+				<tr>
+					<td>NIT: </td>
+					<td>{{proveedor.nit }}</td>
+				</tr>
+				<tr>
+					<td>FECHA ALTA: </td>
+					<td>{{proveedor.fecha_alta_proveedor }}</td>
+				</tr>
+				<tr>
+					<td>TELÉFONO 1: </td>
+					<td>{{proveedor.telefono_1 }}</td>
+				</tr>
+				<tr>
+					<td>TELÉFONO 2: </td>
+					<td>{{proveedor.telefono_2 }}</td>
+				</tr>
+				<tr>
+					<td>PERMISO DE INSTALACIÓN: </td>
+					<td>{{proveedor.permiso_instalacion }}</td>
+				</tr>
+				<tr>
+					<td>EMAIL: </td>
+					<td>{{proveedor.email }}</td>
+				</tr>
+				<tr>
+					<td>RESPONSABLE: </td>
+					<td>{{proveedor.responsable }}</td>
+				</tr>
+			</table>			
+			
+		</div>
+		<div class="panel-footer">
+			<form method="POST">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-danger" value="Si, Eliminar."/>			
+				<a href="{%url 'proveedores.index'%}" class="btn btn-secondary">Regresar</a>
+			</form>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){	
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}
