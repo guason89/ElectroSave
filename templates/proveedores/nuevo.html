@@ -28,3 +28,20 @@
 	</div>
 	
 {%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$(".datepicker2").datepicker({   
+		    todayHighlight: true,
+		    autoclose: true,
+		});
+
+		$('#telefono_1').mask('0000-0000');
+		$('#telefono_2').mask('0000-0000');
+		$('#nit').mask('9999-999999-999-9');
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

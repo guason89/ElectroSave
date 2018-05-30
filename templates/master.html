@@ -41,11 +41,18 @@
         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
       </li>         
     </ul>
-    <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item d-md-down-none">
-        <a class="nav-link" href="{%url 'salir'%}">Salir</a>
-      </li> 
-    </ul>
+    <div class="float-rigth">
+      {% if user.is_authenticated %}         
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ user.first_name }} {{ user.last_name }}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{%url 'salir'%}">Salir</a>
+          </div>
+        </div>      
+      {% endif %}       
+    </div>
 
   </header>
 

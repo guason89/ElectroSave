@@ -1,33 +1,23 @@
 from django.db import models
-
-class ContactoProveedor(models.Model):
-    id_contacto_proveedor = models.AutoField(primary_key=True)
-    id_proveedor = models.IntegerField()
-    nombre_contacto = models.CharField(max_length=250)
-    telefono1_contacto = models.CharField(max_length=30)
-    telefono2_contacto = models.CharField(max_length=30, blank=True, null=True)
-    email_contacto = models.CharField(max_length=50, blank=True, null=True)
-    dui_contacto = models.CharField(max_length=10)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_contactos_proveedores'
-
-
+    
 class Proveedor(models.Model):
     id_proveedor = models.AutoField(primary_key=True)
-    id_contacto_proveedor = models.IntegerField(blank=True, null=True)
-    nombre_proveedor = models.CharField(max_length=250)
-    direccion_proveedor = models.CharField(max_length=250)
-    nit_proveedor = models.CharField(max_length=15)
-    fecha_alta_proveedor = models.DateField(blank=True, null=True)
-    telefono_proveedor = models.CharField(max_length=30)
+    nombre = models.CharField(max_length=250)
+    direccion = models.CharField(max_length=250)
+    nit = models.CharField(max_length=17)
+    fecha_alta_proveedor = models.DateField()
+    telefono_1 = models.CharField(max_length=20)
+    telefono_2 = models.CharField(max_length=20, blank=True, null=True)
     permiso_instalacion = models.CharField(max_length=1)
+    email = models.CharField(max_length=100)
+    responsable = models.CharField(max_length=100)
 
     class Meta:
         managed = False
         db_table = 'tbl_proveedores'
 
+    def __str__ ( self ):
+        return self.nombre
 
    
 
