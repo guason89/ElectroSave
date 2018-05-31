@@ -1,4 +1,11 @@
 {%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
 {%block contenido%}
 <div class="panel panel-success">
 		<div class="panel-heading">
@@ -12,17 +19,44 @@
 		<div class="panel-body">		
 			<form method="post" class="form form-vertical" id="frm_proveedor_nuevo" autocomplete="off">
 				{%csrf_token%}			
-				<div class="row justify-content-md-center"> 
-
-			    {%for element in form %}
+				<div class="row justify-content-md-center">			    
 			    	<div class="form-group col-md-8">			          
-			            <div class="input-group"><b>{{element.label}}</b></div>		
-			            {{element}}
-			            <div class="error">{{element.errors}}</div>	                      
+			            <div class="input-group"><b>{{form.nombre.label}}</b></div>		
+			            {{form.nombre}}
+			            <div class="error">{{form.nombre.errors}}</div>	                      
 			        </div>
-				{% endfor %}			       
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.direccion.label}}</b></div>		
+			            {{form.direccion}}
+			            <div class="error">{{form.direccion.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.nit.label}}</b></div>		
+			            {{form.nit}}
+			            <div class="error">{{form.nit.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.telefono_1.label}}</b></div>		
+			            {{form.telefono_1}}
+			            <div class="error">{{form.telefono_1.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.telefono_2.label}}</b></div>		
+			            {{form.telefono_2}}
+			            <div class="error">{{form.telefono_2.errors}}</div>	                      
+			        </div>
+					<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.email.label}}</b></div>		
+			            {{form.email}}
+			            <div class="error">{{form.email.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.responsable.label}}</b></div>		
+			            {{form.responsable}}
+			            <div class="error">{{form.responsable.errors}}</div>	                      
+			        </div>		       
 			    </div>
-				
+				{{form.errors}}
 			</form>
 			
 		</div>

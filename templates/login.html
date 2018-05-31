@@ -36,9 +36,10 @@
 						
 						{% if form.errors %}
 		                    <div class="error">
-		                        El usuario y/o contraseña no son correctos!.
+		                        El usuario y/o contraseña no son válidos!.
 		                    </div>
 		                {% endif %}
+		                {{form.errors}}
 						
 					</div>
 
