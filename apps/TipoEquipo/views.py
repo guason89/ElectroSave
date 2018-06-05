@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from apps.TipoEquipo import forms
+from django.urls import reverse, reverse_lazy
 
 from apps.TipoEquipo.models import TipoEquipo
 
@@ -14,4 +15,4 @@ class TipoEquipoCreate(CreateView):
 	template_name = 'TipoEquipo/nuevo.html' 
 	
 	def get_success_url(self):
-		return reverse('tipo_equipo.index')
+		return reverse_lazy('tipo_equipo.index')
