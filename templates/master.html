@@ -66,10 +66,12 @@
           </li>
           <li class="nav-item">
             <a href="{% url 'home'%}" class="nav-link"><i class="icon-home"></i>Inicio</a>
-          </li>         
+          </li>
+          {% if perms.Proveedores.select_proveedor %}         
           <li class="nav-item">            
             <a href="{% url 'proveedores.index'%}" class="nav-link"><i class="icon-shopping-cart"></i>Proveedores</a>
           </li>
+          {%endif%}
           <li class="nav-title">
             Components
           </li>

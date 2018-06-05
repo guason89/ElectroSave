@@ -1,0 +1,50 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Proveedores</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'tipo_equipo.nuevo'%}" class="btn btn-success" title="Nuevo proveedor"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered">
+					<thead>
+						<tr>
+							<th width="10%">No.</th>
+							<th width="20%">TIPO DE EQUIPO</th>
+							
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for tipoEquipo in object_list%}
+						<tr>
+							<td>{{tipoEquipo.id_tipo_equipo}}</td>
+							<td>{{tipoEquipo.tipo_equipo}}</td>
+							
+							<td class="btn-group d-flex">
+							
+								
+												
+								
+								
+											
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}

@@ -4,13 +4,22 @@ from django.views.generic import ListView, CreateView, DetailView, DeleteView, U
 
 from apps.Proveedores.models import Proveedor
 from apps.Proveedores import forms
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
+
+
 
 
 
 class ProveedorList (ListView):
 	model = Proveedor
 	template_name = 'proveedores/index.html'
+
+	#@method_decorator(permission_required('Proveedores.select_proveedor',reverse_lazy('home')))
+	#def dispatch(self, *args, **kwargs):
+		#return super().dispatch(*args, **kwargs)
 
 class ProveedorCreate(CreateView):
 	model = Proveedor
@@ -19,6 +28,10 @@ class ProveedorCreate(CreateView):
 	
 	def get_success_url(self):
 		return reverse('proveedores.index')
+
+	@method_decorator(permission_required('Proveedores.add_proveedor',reverse_lazy('home')))
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
 
 class ProveedorActualizar(UpdateView):
 	model = Proveedor
@@ -37,5 +50,9 @@ class ProveedorEliminar(DeleteView):
 	template_name = 'proveedores/eliminar.html'
 	def get_success_url(self):
 		return reverse('proveedores.index')
+
+	
+
+
 
 

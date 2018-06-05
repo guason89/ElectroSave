@@ -118,4 +118,41 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class TblEquipo(models.Model):
+    id_equipo = models.AutoField(primary_key=True)
+    id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
+    id_tipo_equipo = models.ForeignKey('TblTipoEquipo', models.DO_NOTHING, db_column='id_tipo_equipo')
+    marca = models.CharField(max_length=100)
+    modelo = models.CharField(max_length=100)
+    año_fabricacion = models.CharField(max_length=4, blank=True, null=True)
+    es_aire_acondicionado = models.BooleanField()
+    capacidad_btu = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'tbl_equipo'
+
+
+class TblProveedores(models.Model):
+    id_proveedor = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=250)
+    direccion = models.CharField(max_length=250)
+    nit = models.CharField(max_length=17)
+    fecha_alta_proveedor = models.DateField()
+    telefono_1 = models.CharField(max_length=20)
+    telefono_2 = models.CharField(max_length=20, blank=True, null=True)
+    email = models.CharField(max_length=100)
+    responsable = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_proveedores'
+
+
+class TblTipoEquipo(models.Model):
+    id_tipo_equipo = models.AutoField(primary_key=True)
+    tipo_equipo = models.CharField(max_length=250)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_tipo_equipo'
