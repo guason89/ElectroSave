@@ -66,29 +66,21 @@
           </li>
           <li class="nav-item">
             <a href="{% url 'home'%}" class="nav-link"><i class="icon-home"></i>Inicio</a>
-          </li>                
-          <li class="nav-item">            
-            <a href="{% url 'proveedores.index'%}" class="nav-link"><i class="icon-shopping-cart"></i>Proveedores</a>
-          </li>
-          <li class="nav-item">            
-            <a href="{% url 'tipo_equipo.index'%}" class="nav-link"><i class="icon-list"></i>Tipos de equipo</a>
-          </li>          
-          <li class="nav-title">
-            Components
-          </li>
+          </li>                   
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-hospital"></i> Base</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-suitcase"></i>PROVEEDORES</a>
             <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="base-breadcrumb.html"><i class="icon-hospital"></i> Breadcrumb</a>
+              <li class="nav-item">                
+                <a href="{% url 'proveedores.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Proveedores</a>                
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="base-cards.html"><i class="icon-hospital"></i> Cards</a>
-              </li>              
+              <li class="nav-item">            
+                <a href="{% url 'tipo_equipo.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Tipos de equipo</a>
+              </li>
+              <li class="nav-item">                
+                <a href="#" class="nav-link"><i class="fa fa-chevron-right"></i>Catálogo</a>                
+              </li>            
             </ul>
-          </li> 
-          
-
+          </li>
         </ul>
       </nav>
       

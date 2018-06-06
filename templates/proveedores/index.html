@@ -34,10 +34,10 @@
 							<td>{{p.responsable}}</td>
 							<td class="btn-group d-flex">
 							
-								<a class="btn btn-secondary" title="Detalles" href="{%url 'proveedores.detalles' pk=p.id_proveedor%}"><span class="icon-th"></span></a>	
+								<a class="btn btn-secondary" title="Detalles" href="{%url 'proveedores.detalles' pk=p.id_proveedor%}"><span class="icon-info"></span></a>	
 												
 								
-								<a class="btn btn-secondary" title="Editar" href="{%url 'proveedores.actualizar' pk=p.id_proveedor%}"><span class="icon-pencil"></span></a>
+								<a class="btn btn-secondary" title="Editar" href="{%url 'proveedores.actualizar' pk=p.id_proveedor%}"><span class="icon-note"></span></a>
 							
 								<a class="btn btn-danger" title="Eliminar" href="{% url 'proveedores.eliminar' pk=p.id_proveedor %}"><span class="icon-trash "></span></a>	
 											
