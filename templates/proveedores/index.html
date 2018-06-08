@@ -12,7 +12,7 @@
 		</div>
 		<div class="panel-body">		
 			<div class="table-responsive">
-				<table class="table table-th-block table-hover table-bordered">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_proveedores" width="99.7%">
 					<thead>
 						<tr>
 							<th width="10%">No.</th>
@@ -53,4 +53,17 @@
 		</div>
 	</div>
 	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_proveedores').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
 {%endblock%}
