@@ -22,29 +22,28 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-25 p-b-20">
-				<form class="login100-form validate-form" method="post">
-					{%csrf_token%}
-					<span class="login100-form-title p-b-70">
+				<form class="login100-form validate-form" method="post" autocomplete="off">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-50">
 						Bienvenid@
 					</span>
 					<span class="login100-form-avatar">
 						<img src="{% static 'img/logo.jpg' %}" alt="AVATAR">
 					</span>
-
-					<div class="wrap-input100 validate-input m-t-55 m-b-5" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" required="true" placeholder="Usuario">
-						
-						{% if form.errors %}
-		                    <div class="error">
-		                        El usuario y/o contraseña no son válidos!.
-		                    </div>
-		                {% endif %}
+					{% if message %}
+	                    <div class="error">
+	                        {{message}}
+	                    </div>
+	                {% endif %}
+					<div class="wrap-input100 validate-input m-t-40 m-b-5" data-validate = "Enter username">
+						<!--<input class="input100" type="text" name="username" required="true" placeholder="Usuario"> -->
+						{{form.username}}					
 		                		                			
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="password" required="true" placeholder="Contraseña">
-												
+						<!--<input class="input100" type="password" name="password" required="true" placeholder="Contraseña"> -->
+						{{form.password}}					
 					</div>
 
 					<div class="container-login100-form-btn">

@@ -6,14 +6,13 @@ from apps.Proveedores.models import Proveedor
 from apps.Proveedores import forms
 from django.urls import reverse, reverse_lazy
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
 
 
 
-
-
-class ProveedorList (ListView):
+class ProveedorList(LoginRequiredMixin, ListView):
 	model = Proveedor
 	template_name = 'proveedores/index.html'
 
@@ -21,7 +20,7 @@ class ProveedorList (ListView):
 	#def dispatch(self, *args, **kwargs):
 		#return super().dispatch(*args, **kwargs)
 
-class ProveedorCreate(CreateView):
+class ProveedorCreate(LoginRequiredMixin, CreateView):
 	model = Proveedor
 	form_class = forms.ProveedorForm
 	template_name = 'proveedores/nuevo.html' 
@@ -33,7 +32,7 @@ class ProveedorCreate(CreateView):
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
-class ProveedorActualizar(UpdateView):
+class ProveedorActualizar(LoginRequiredMixin, UpdateView):
 	model = Proveedor
 	form_class = forms.ProveedorForm
 	template_name = 'proveedores/nuevo.html' 
@@ -41,11 +40,11 @@ class ProveedorActualizar(UpdateView):
 	def get_success_url(self):
 		return reverse('proveedores.index')
 
-class ProveedorDetalles(DetailView):
+class ProveedorDetalles(LoginRequiredMixin, DetailView):
 	model = Proveedor
 	template_name = 'proveedores/detalle.html'
 
-class ProveedorEliminar(DeleteView):
+class ProveedorEliminar(LoginRequiredMixin, DeleteView):
 	model = Proveedor
 	template_name = 'proveedores/eliminar.html'
 	def get_success_url(self):
