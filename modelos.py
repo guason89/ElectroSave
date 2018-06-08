@@ -133,6 +133,17 @@ class TblEquipo(models.Model):
         db_table = 'tbl_equipo'
 
 
+class TblIntentos(models.Model):
+    id_intento = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=100)
+    intentos = models.IntegerField(blank=True, null=True)
+    fecha = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_intentos'
+
+
 class TblProveedores(models.Model):
     id_proveedor = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=250)
