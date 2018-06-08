@@ -3,7 +3,7 @@
 {%block contenido%}
 	<div class="panel panel-success">
 		<div class="panel-heading">
-				<h3 class="panel-title">Proveedores</h3>
+				<h3 class="panel-title">Tipos de equipos</h3>
 					
 				<div class="float-right">
 					<a href="{%url 'tipo_equipo.nuevo'%}" class="btn btn-success" title="Nuevo proveedor"><span class="fa fa-plus"></span>Nuevo</a>
@@ -12,7 +12,7 @@
 		</div>
 		<div class="panel-body">		
 			<div class="table-responsive">
-				<table class="table table-th-block table-hover table-bordered">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_tipo_equipo" width="99.7%">
 					<thead>
 						<tr>
 							<th width="10%">No.</th>
@@ -29,12 +29,12 @@
 							<td>{{tipoEquipo.tipo_equipo}}</td>
 							
 							<td class="btn-group d-flex">
-								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-info"></span></a>	
+								<a class="btn btn-secondary" title="Detalles" href="{%url 'tipo_equipo.detalles' pk=tipoEquipo.id_tipo_equipo %}"><span class="icon-info"></span></a>	
 												
 								
-								<a class="btn btn-secondary" title="Editar" href="#"><span class="icon-note"></span></a>
+								<a class="btn btn-secondary" title="Editar" href="{%url 'tipo_equipo.actualizar' pk=tipoEquipo.id_tipo_equipo%}"><span class="icon-note"></span></a>
 							
-								<a class="btn btn-danger" title="Eliminar" href="#"><span class="icon-trash "></span></a>											
+								<a class="btn btn-danger" title="Eliminar" href="{%url 'tipo_equipo.eliminar' pk=tipoEquipo.id_tipo_equipo %}"><span class="icon-trash "></span></a>											
 							</td>
 						</tr>
 					{%endfor%}		
@@ -47,4 +47,17 @@
 		</div>
 	</div>
 	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_tipo_equipo').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
 {%endblock%}

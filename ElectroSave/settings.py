@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.Inicio',
     'apps.Proveedores',
     'apps.TipoEquipo',
+    'apps.Equipos',
 ]
 
 MIDDLEWARE = [

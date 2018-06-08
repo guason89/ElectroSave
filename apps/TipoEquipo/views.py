@@ -16,3 +16,21 @@ class TipoEquipoCreate(CreateView):
 	
 	def get_success_url(self):
 		return reverse_lazy('tipo_equipo.index')
+
+class TipoEquipoActualizar(UpdateView):
+	model = TipoEquipo
+	form_class = forms.TipoEquipoForm
+	template_name = 'TipoEquipo/nuevo.html' 
+	
+	def get_success_url(self):
+		return reverse_lazy('tipo_equipo.index')
+
+class TipoEquipoDetalles(DetailView):
+	model = TipoEquipo
+	template_name = 'TipoEquipo/detalle.html'
+
+class TipoEquipoEliminar(DeleteView):
+	model = TipoEquipo
+	template_name = 'TipoEquipo/eliminar.html'
+	def get_success_url(self):
+		return reverse_lazy('tipo_equipo.index')

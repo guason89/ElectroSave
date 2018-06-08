@@ -7,3 +7,6 @@ class TipoEquipo(models.Model):
     class Meta:
         managed = False
         db_table = 'tbl_tipo_equipo'
+
+    def __str__ ( self ):
+        return self.tipo_equipo
