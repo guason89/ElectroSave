@@ -11,5 +11,5 @@ urlpatterns = [
     path ( 'nuevo' , login_required(InstitucionesCreate.as_view()) , name = 'instituciones.nuevo' ),
     path ( 'actualizar/<pk>' , login_required(InstitucionesActualizar.as_view()) , name = 'instituciones.actualizar' ),  
     #path ( 'detalle/<pk>' , TipoEquipoDetalles.as_view() , name = 'tipo_equipo.detalles' ),  
-    #path ( 'eliminar/<pk>' , TipoEquipoEliminar.as_view() , name = 'tipo_equipo.eliminar' ),
+    path ( 'eliminar/<pk>' , TipoEquipoEliminar.as_view() , name = 'tipo_equipo.eliminar' ),
 ]

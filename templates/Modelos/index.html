@@ -1,0 +1,67 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Modelos de Equipos</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'modelos.nuevo'%}" class="btn btn-success" title="Nuevo modelo"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_tipo_equipo" width="99.7%">
+					<thead>
+						<tr>
+							<th width="10%">No.</th>
+							<th width="20%">TIPO EQUIPO</th>
+							<th>MARCA</th>
+							<th>NOMBRE MODELO</th>
+							<th width="5%">AÑO FABRICACIÓN</th>
+							<th width="5%">CAPACIDAD BTU</th>
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for modeloEquipo in object_list%}
+						<tr>
+							<td>{{modeloEquipo.id_modelo}}</td>
+							<td>{{modeloEquipo.tipo}}</td>
+							<td>{{modeloEquipo.marca}}</td>
+							<td>{{modeloEquipo.nombre_modelo}}</td>
+							<td>{{modeloEquipo.año_fabricacion}}</td>
+							<td>{{modeloEquipo.capacidad_btu}}</td>
+							<td class="btn-group d-flex">					
+								
+								<a class="btn btn-secondary" title="Editar" href="{%url 'modelos.actualizar' pk=modeloEquipo.id_modelo%}"><span class="icon-note"></span></a>
+							
+								<a class="btn btn-danger" title="Eliminar" href="{%url 'modelos.eliminar' pk=modeloEquipo.id_modelo%}"><span class="icon-trash "></span></a>											
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_tipo_equipo').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
+{%endblock%}

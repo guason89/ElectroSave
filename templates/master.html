@@ -70,6 +70,10 @@
           <li class="nav-item">
             <a href="{% url 'instituciones.index'%}" class="nav-link"><i class="icon-home"></i>INSTITUCIONES</a>
           </li>                   
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'roles.index'%}" class="nav-link"><i class="fa fa-cog"></i>Roles</a>
+          </li>                    
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-suitcase"></i>PROVEEDORES</a>
             <ul class="nav-dropdown-items">
@@ -80,7 +84,7 @@
                 <a href="{% url 'tipo_equipo.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Tipos de equipo</a>
               </li>
               <li class="nav-item">                
-                <a href="#" class="nav-link"><i class="fa fa-chevron-right"></i>Modelos</a>                
+                <a href="{%url 'modelos.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Modelos</a>                
               </li>            
             </ul>
           </li>

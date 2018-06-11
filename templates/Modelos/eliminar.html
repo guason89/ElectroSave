@@ -1,0 +1,51 @@
+{%extends 'master.html'%}
+{%block contenido%}
+<div class="panel panel-danger">
+		<div class="panel-heading">
+				<h3 class="panel-title">Eliminar Modelo de Equipo</h3>						     
+		</div>
+		<div class="panel-body">
+			<p class="error">Esta seguro que desea eliminar el modelo de equipo : {{ modeloequipo }}?</p>		
+			<table class="table table-striped">
+				<tr>
+					<td width="30%">TIPO DE EQUIPO: </td>
+					<td width="70%">{{modeloequipo.tipo }}</td>
+				</tr>
+				<tr>
+					<td width="30%">MARCA: </td>
+					<td width="70%">{{modeloequipo.marca }}</td>
+				</tr>
+				<tr>
+					<td width="30%">NOMBRE MODELO: </td>
+					<td width="70%">{{modeloequipo.nombre_modelo }}</td>
+				</tr>
+				<tr>
+					<td width="30%">AÑO FABRICACIÓN: </td>
+					<td width="70%">{{modeloequipo.año_fabricacion }}</td>
+				</tr>
+				<tr>
+					<td width="30%">CAPACIDAD BTU: </td>
+					<td width="70%">{{modeloequipo.capacidad_btu }}</td>
+				</tr>
+			</table>			
+			
+		</div>
+		<div class="panel-footer">
+			<form method="POST">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-danger" value="Si, Eliminar."/>			
+				<a href="{%url 'modelos.index'%}" class="btn btn-secondary">Regresar</a>
+			</form>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){	
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}
