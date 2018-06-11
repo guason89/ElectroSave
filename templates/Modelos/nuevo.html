@@ -1,0 +1,113 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-success">
+		<div class="panel-heading">
+			{% if modeloequipo.id_modelo %}
+			<h3 class="panel-title">Editar modelo de equipo</h3>
+			{% else %}
+			<h3 class="panel-title">Insertar modelo de equipo</h3>
+			{% endif %}
+										     
+		</div>
+		<div class="panel-body">		
+			<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+				{%csrf_token%}			
+				<div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.marca.label}}</b></div>		
+			            {{form.marca}}
+			            <div class="error">{{form.marca.errors}}</div>	                      
+			        </div>
+			        		       
+			    </div>
+				<div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.nombre_modelo.label}}</b></div>		
+			            {{form.nombre_modelo}}
+			            <div class="error">{{form.nombre_modelo.errors}}</div>	                      
+			        </div>			        		       
+			    </div>
+				<div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.año_fabricacion.label}}</b></div>		
+			            {{form.año_fabricacion}}
+			            <div class="error">{{form.año_fabricacion.errors}}</div>	                      
+			        </div>			        		       
+			    </div>
+			    <div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <b>{{form.es_aire_acondicionado.label}}</b>		
+			            {{form.es_aire_acondicionado}}
+			            <div class="error">{{form.es_aire_acondicionado.errors}}</div>	                      
+			        </div>			        		       
+			    </div>
+			    <div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>Capacidad BTU (Aires Acondicionados)</b></div>		
+			            <input 
+			            	type="number" 
+			            	name="capacidad_btu" 
+			            	id="id_capacidad_btu" 
+			            	min="0" 
+			            	{%if modeloequipo%}			            		
+			            		value= "{{modeloequipo.capacidad_btu}}"			            		
+		            		{%endif%}
+			            	class="form-control">
+			            <div class="error">{{form.capacidad_btu.errors}}</div>	                      
+			        </div>			        		       
+			    </div>
+			    <div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>Tipo de equipo</b></div>		
+			            <select class="form-control" name="selecttipo", id="id_selecttipo" required="true">
+			            	<option value="">-----</option>
+			            	{%for tipo in form.tipos%}	            					            		
+			            	<option 
+			            		value="{{tipo.id_tipo_equipo}}" 
+			            		{%if modeloequipo%}
+				            		{%if  modeloequipo.tipo.id_tipo_equipo == tipo.id_tipo_equipo%}
+				            		selected="true"
+				            		{%endif%}
+			            		{%endif%}
+			            		>{{tipo.tipo_equipo}}
+			            	</option>		            		
+
+			            	{%endfor%}
+			            </select>			            	                      
+			        </div>			        		       
+			    </div>
+			    <!--<div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>Tipo de equipo</b></div>		
+			            {{form.selecttipo}}
+			            <div class="error">{{form.selecttipo.errors}}</div>	                      
+			        </div>			        		       
+			    </div>-->			    			
+			</form>
+			
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'modelos.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#id_año_fabricacion').mask('9999');
+		//$('#id_capacidad_btu').mask('9999');
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

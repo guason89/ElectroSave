@@ -1,12 +1,14 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+class AuthPermission(models.Model):
+    name = models.CharField(max_length=255)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    codename = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_permission'
+        unique_together = (('content_type', 'codename'),)
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
@@ -14,6 +16,8 @@ class AuthGroup(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_group'
+
+    permissions = models.ManyToManyField(AuthPermission)
 
 
 class AuthGroupPermissions(models.Model):
@@ -26,15 +30,7 @@ class AuthGroupPermissions(models.Model):
         unique_together = (('group', 'permission'),)
 
 
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100)
 
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
 
 
 class AuthUser(models.Model):
@@ -116,53 +112,3 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
-
-class TblIntentos(models.Model):
-    id_intento = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=100)
-    intentos = models.IntegerField(blank=True, null=True)
-    fecha = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_intentos'
-
-
-class TblModelo(models.Model):
-    id_modelo = models.AutoField(primary_key=True)
-    id_tipo_equipo = models.ForeignKey('TblTipoEquipo', models.DO_NOTHING, db_column='id_tipo_equipo')
-    marca = models.CharField(max_length=100)
-    nombre_modelo = models.CharField(max_length=100)
-    año_fabricacion = models.CharField(max_length=4)
-    es_aire_acondicionado = models.BooleanField()
-    capacidad_btu = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_modelo'
-
-
-class TblProveedores(models.Model):
-    id_proveedor = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=250)
-    direccion = models.CharField(max_length=250)
-    nit = models.CharField(max_length=17)
-    fecha_alta_proveedor = models.DateField()
-    telefono_1 = models.CharField(max_length=20)
-    telefono_2 = models.CharField(max_length=20, blank=True, null=True)
-    email = models.CharField(max_length=100)
-    responsable = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_proveedores'
-
-
-class TblTipoEquipo(models.Model):
-    id_tipo_equipo = models.AutoField(primary_key=True)
-    tipo_equipo = models.CharField(max_length=250)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_tipo_equipo'

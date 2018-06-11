@@ -18,5 +18,8 @@ urlpatterns = [
 
     #incluir rutas de cada aplicacion
     path ( 'proveedores/' , include ( 'apps.Proveedores.urls' )),
-    path ( 'tipo/equipo/' , include ( 'apps.TipoEquipo.urls' )),   
+    path ( 'tipo/equipo/' , include ( 'apps.TipoEquipo.urls' )),
+
+    path ( 'modelos/' , include ( 'apps.ModelosEquipos.urls' )),
+    path ( 'roles/' , include ( 'apps.Roles.urls' )), 
 ]

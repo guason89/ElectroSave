@@ -12,7 +12,28 @@
 				</tr>
 				
 			</table>			
-			
+			<h3>Equipos Asociados</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>marca</th>
+						<th>modelo</th>
+						<th>año fabricación</th>
+						<th>capacidad BTU</th>
+					</tr>
+				</thead>
+				<tbody>		
+				{%for equipo in tipoequipo.getEquipos%}				
+				<tr>
+					<td>{{equipo.marca}}</td>
+					<td>{{equipo.nombre_modelo}}</td>
+					<td>{{equipo.año_fabricacion}}</td>
+					<td>{{equipo.capacidad_btu}}</td>
+				</tr>
+								
+				{%endfor%}
+				</tbody>	
+			</table>
 		</div>
 		<div class="panel-footer">			
 			<a href="{%url 'tipo_equipo.index'%}" class="btn btn-secondary">Regresar</a>
