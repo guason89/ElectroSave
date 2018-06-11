@@ -1,0 +1,75 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-success">
+		<div class="panel-heading">
+			{% if instituciones.id_institucion%}
+			<h3 class="panel-title">Editar Instituciones</h3>
+			{% else %}
+			<h3 class="panel-title">Insertar Instituciones</h3>
+			{% endif %}
+										     
+		</div>
+		<div class="panel-body">		
+			<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+				{%csrf_token%}			
+				<div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.nombre_inst.label}}</b></div>		
+			            {{form.nombre_inst}}
+			            <div class="error">{{form.nombre_inst.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.nit_inst.label}}</b></div>		
+			            {{form.nit_inst}}
+			            <div class="error">{{form.nit_inst.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.telefono_1_inst.label}}</b></div>		
+			            {{form.telefono_1_inst}}
+			            <div class="error">{{form.telefono_1_inst.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.telefono_2_inst.label}}</b></div>		
+			            {{form.telefono_2_inst}}
+			            <div class="error">{{form.telefono_2_inst.errors}}</div>	                      
+			        </div>
+					<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.complemento_dir.label}}</b></div>		
+			            {{form.complemento_dir}}
+			            <div class="error">{{form.complemento_dir.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.presupuesto.label}}</b></div>		
+			            {{form.presupuesto}}
+			            <div class="error">{{form.presupuesto.errors}}</div>	                      
+			        </div>
+			        		       
+			    </div>
+				{{form.errors}}
+			</form>
+			
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'instituciones.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

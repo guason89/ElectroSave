@@ -1,5 +1,76 @@
 {%extends 'master.html'%}
 
 {%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Instituciones</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'instituciones.nuevo'%}" class="btn btn-success" title="crear Institucion"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_instituciones" width="99.7%">
+					<thead>
+						<tr>
+							<th width="7%">No.</th>
+							<th width="8%">FECHA_CREACION</th>
+							<th width="25%">NOMBRE INSTITUCION</th>
+							<th width="10%">NIT</th>
+							<th width="5%">TELEFONO1</th>
+							<th width="5%">TELEFONO2</th>
+							<th width="30%">DIRECCION</th>
+							<th width="7%">PRESUPUESTO</th>
+							<th></th>
+						</tr>
+
+
+
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for institucion in object_list%}
+						<tr>
+							<td>{{institucion.id_institucion}}</td>
+							<td>{{institucion.fecha_creacion_inst}}</td>
+							<td>{{institucion.nombre_inst}}</td>
+							<td>{{institucion.nit_inst}}</td>
+							<td>{{institucion.telefono_1_inst}}</td>
+							<td>{{institucion.telefono_2_inst}}</td>
+							<td>{{institucion.complemento_dir}}</td>
+							<td>{{institucion.presupuesto}}</td>
+							<td class="btn-group d-flex">
+								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-info"></span></a>	
+												
+								
+								<a class="btn btn-secondary" title="Editar" href="{%url 'instituciones.actualizar' pk=institucion.id_institucion%}"><span class="icon-note"></span></a>
+							
+								<a class="btn btn-danger" title="Eliminar" href="#"><span class="icon-trash "></span></a>											
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
 	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_instituciones').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
 {%endblock%}
