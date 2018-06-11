@@ -42,10 +42,8 @@ INSTALLED_APPS = [
     'apps.Inicio',
     'apps.Proveedores',
     'apps.TipoEquipo',
-
     'apps.Equipos',
-    'apps.Instituciones'
-
+    'apps.Instituciones',
     'apps.ModelosEquipos',
     'apps.Roles'
 
