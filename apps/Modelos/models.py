@@ -1,5 +1,19 @@
 from django.db import models
 
+#para usar procedimientos o consultas directas
+from django.db import connection
+from collections import namedtuple
+
+class Aux(models.Model):
+
+    def dictfetchall(cursor):
+        "Return all rows from a cursor as a dict"
+        columns = [col[0] for col in cursor.description]
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]
+
 class AuthPermission(models.Model):
     name = models.CharField(max_length=255)
     content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
@@ -17,7 +31,12 @@ class AuthGroup(models.Model):
         managed = False
         db_table = 'auth_group'
 
-    permissions = models.ManyToManyField(AuthPermission)
+        #consulta a una funcion en postgresql
+    def getPermisos(self):
+        with connection.cursor() as cursor:
+            cursor.callproc('f_get_permisos', [self.id])
+            results =  Aux.dictfetchall(cursor) 
+            return results
 
 
 class AuthGroupPermissions(models.Model):
@@ -28,9 +47,6 @@ class AuthGroupPermissions(models.Model):
         managed = False
         db_table = 'auth_group_permissions'
         unique_together = (('group', 'permission'),)
-
-
-
 
 
 class AuthUser(models.Model):

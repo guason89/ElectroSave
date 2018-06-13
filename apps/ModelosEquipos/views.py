@@ -51,7 +51,7 @@ class ModeloUpdate(UpdateView):
 		modelo = self.model.objects.get(id_modelo = pk)
 		if 'form' not in context:
 			context['form'] = self.form_class()
-			contex['id'] = pk
+			context['id'] = pk
 		return context
 
 	def post(self, request, *args, **kwargs):

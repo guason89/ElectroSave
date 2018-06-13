@@ -1,0 +1,38 @@
+{%extends 'master.html'%}
+{%block contenido%}
+<div class="panel panel-danger">
+		<div class="panel-heading">
+				<h3 class="panel-title">Eliminar Rol</h3>						     
+		</div>
+		<div class="panel-body">
+			<p class="error">Esta seguro que desea eliminar el rol : {{ object.name }}?</p>		
+			<table class="table table-striped">
+				<tr>
+					<td width="30%">ROL: </td>
+					<td width="70%">{{object.name }}</td>
+				</tr>
+				
+			</table>					
+			{%if msj%}
+			<p class="error">{{ msj }}</p>	
+			{%endif%}
+		</div>
+		<div class="panel-footer">
+			<form method="POST">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-danger" value="Si, Eliminar."/>			
+				<a href="{%url 'roles.index'%}" class="btn btn-secondary">Regresar</a>
+			</form>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){	
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

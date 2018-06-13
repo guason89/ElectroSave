@@ -1,7 +1,6 @@
 from django.urls import path
 
-from apps.TipoEquipo.views import TipoEquipoList,TipoEquipoCreate, TipoEquipoActualizar, TipoEquipoDetalles, \
-TipoEquipoEliminar
+from apps.TipoEquipo.views import TipoEquipoList,TipoEquipoCreate, TipoEquipoActualizar, TipoEquipoDetalles, TipoEquipoEliminar
 
 from django.contrib.auth.decorators import login_required
 

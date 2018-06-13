@@ -1,0 +1,67 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-success">
+		<div class="panel-heading">			
+			<h3 class="panel-title">Editar Rol</h3>									     
+		</div>
+		<div class="panel-body">		
+			<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+				{%csrf_token%}			
+				<div class="row justify-content-md-center">			    
+			    	<div class="form-group col-md-8">			          
+			            <div class="input-group"><b>{{form.name.label}}</b></div>		
+			            {{form.name}}
+			            <div class="error">{{form.name.errors}}</div>	                      
+			        </div>
+			        <div class="form-group col-md-8">
+			            <div class="input-group"><b>PERMISOS</b></div>	
+			            	<table class="table table-th-block table-hover table-bordered">
+			            		<thead></thead>
+			            		<tbody>
+			            		{%for permiso in authgroup.getPermisos%}
+			            		<tr>	
+			            			<td>
+					             	<input 
+					             		type="checkbox" 
+					             		name="permisos" 
+					             		value="{{permiso.permiso_id}}" 
+					             		class="form-control"
+					             		{%if permiso.es_chequeado%}
+					             		checked="checked" 
+					             		{%endif%}
+					             	>
+					             	</td>
+					             	<td>{{permiso.permiso_name}}</td>
+					            </tr>
+	  						 	{%endfor%}			            			
+			            		</tbody>
+			            	</table> 				            			            	                      
+			        </div>			        		       
+			    </div>			
+			</form>
+			
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'roles.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}
