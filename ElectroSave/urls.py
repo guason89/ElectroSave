@@ -22,4 +22,5 @@ urlpatterns = [
     path ( 'instituciones/' , include ( 'apps.Instituciones.urls' )),
     path ( 'modelos/' , include ( 'apps.ModelosEquipos.urls' )),
     path ( 'roles/' , include ( 'apps.Roles.urls' )), 
+    path ( 'usuarios/' , include ( 'apps.Usuarios.urls' )), 
 ]

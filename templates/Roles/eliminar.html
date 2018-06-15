@@ -14,7 +14,10 @@
 				
 			</table>					
 			{%if msj%}
-			<p class="error">{{ msj }}</p>	
+			<div class="alert alert-danger" role="alert" id="msj">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msj}}
+            </div>
 			{%endif%}
 		</div>
 		<div class="panel-footer">
@@ -31,7 +34,7 @@
 {%block js%}
 <script type="text/javascript">
 	$(document).ready(function(){	
-		
+		$('#msj').delay(4000).fadeOut(1000);
 
 	}); //fin del document.ready
 </script>
