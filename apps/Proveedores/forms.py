@@ -1,11 +1,13 @@
 from django import forms
 from apps.Proveedores.models import Proveedor
+from apps.ModelosEquipos.models import ModeloEquipo
 
 
 class ProveedorForm(forms.ModelForm):
 	
 	email = forms.EmailField(label='CORREO ELECTRÓNICO', widget=forms.EmailInput(attrs={'class': 'form-control'}))
 	
+	modelos = ModeloEquipo.objects.all()
 	class Meta:
 		model = Proveedor			
 

@@ -81,7 +81,35 @@
 
 			            	{%endfor%}
 			            </select>			            	                      
-			        </div>			        		       
+			        </div>
+			        <div class="form-group col-md-8">
+		            	<div class="input-group"><b>PROVEEDORES DE ÉSTE MODELO</b></div>	
+		            	<table class="table table-th-block table-hover table-bordered">
+		            		<thead></thead>
+		            		<tbody>
+		            		{%for proveedor in form.proveedores%}
+		            		<tr>	
+		            			<td>
+				             	<input 
+				             		type="checkbox" 
+				             		name="id_proveedores" 
+				             		value="{{proveedor.id_proveedor}}" 
+				             		class="form-control"
+				             			{%if modeloequipo.id_modelo%} 
+				             			{%for pro_aso in modeloequipo.get_proveedores_asociados%}
+				             				{%if pro_aso.id_proveedor == proveedor.id_proveedor%}
+				             				checked="checked" 
+				             				{%endif%}
+				             			{%endfor%} 
+				             			{%endif%}            		
+				             	>
+				             	</td>
+				             	<td>{{proveedor.nombre}}</td>
+				            </tr>
+  						 	{%endfor%}			            			
+		            		</tbody>
+		            	</table> 				            			            	                      
+		        	</div>			        		       
 			    </div>
 			    <!--<div class="row justify-content-md-center">			    
 			    	<div class="form-group col-md-8">			          
@@ -89,7 +117,8 @@
 			            {{form.selecttipo}}
 			            <div class="error">{{form.selecttipo.errors}}</div>	                      
 			        </div>			        		       
-			    </div>-->			    			
+			    </div>-->
+			    					    			
 			</form>
 			
 		</div>

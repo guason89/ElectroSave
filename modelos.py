@@ -118,24 +118,6 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class TblInstituciones(models.Model):
-    id_institucion = models.AutoField(primary_key=True)
-    fecha_creacion_inst = models.DateField()
-    nombre_inst = models.CharField(max_length=250)
-    nit_inst = models.CharField(max_length=15, blank=True, null=True)
-    telefono_1_inst = models.CharField(max_length=12, blank=True, null=True)
-    telefono_2_inst = models.CharField(max_length=12, blank=True, null=True)
-    departamento_inst = models.CharField(max_length=60, blank=True, null=True)
-    municipio_inst = models.CharField(max_length=60, blank=True, null=True)
-    complemento_dir = models.CharField(max_length=250, blank=True, null=True)
-    presupuesto = models.FloatField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tbl_instituciones'
-
-
-
 class TblIntentos(models.Model):
     id_intento = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100)
@@ -147,18 +129,26 @@ class TblIntentos(models.Model):
         db_table = 'tbl_intentos'
 
 
-class TblModelo(models.Model):
+class TblModeloEquipo(models.Model):
     id_modelo = models.AutoField(primary_key=True)
     id_tipo_equipo = models.ForeignKey('TblTipoEquipo', models.DO_NOTHING, db_column='id_tipo_equipo')
     marca = models.CharField(max_length=100)
     nombre_modelo = models.CharField(max_length=100)
     año_fabricacion = models.CharField(max_length=4)
-    es_aire_acondicionado = models.BooleanField()
     capacidad_btu = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'tbl_modelo'
+        db_table = 'tbl_modelo_equipo'
+
+
+class ProveedorModelos(models.Model):
+    id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
+    id_modelo = models.ForeignKey(TblModeloEquipo, models.DO_NOTHING, db_column='id_modelo')
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_proveedor_equipos'
 
 
 class TblProveedores(models.Model):
@@ -175,3 +165,12 @@ class TblProveedores(models.Model):
     class Meta:
         managed = False
         db_table = 'tbl_proveedores'
+
+
+class TblTipoEquipo(models.Model):
+    id_tipo_equipo = models.AutoField(primary_key=True)
+    tipo_equipo = models.CharField(max_length=250)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_tipo_equipo'

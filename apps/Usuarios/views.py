@@ -137,7 +137,7 @@ class SendEmail(TemplateView):
 				subject = 'ElectroSave solicitud de gestión de usuario',
 				body = body,
 				from_email = 'electrosave.gestion.usuario@gmail.com',
-				to = ['mtbguason@hotmail.com'],
+				to = ['4dministrador.3l3ctros4v3@gmail.com'],
 				)
 			email_message.content_subtype = 'html'
 			email_message.send()

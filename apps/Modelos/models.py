@@ -137,3 +137,11 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+class ProveedorModelos(models.Model):
+    id_proveedor = models.IntegerField()
+    id_modelo = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_proveedor_modelos'

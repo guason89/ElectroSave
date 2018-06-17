@@ -2,6 +2,7 @@ from django import forms
 
 from apps.ModelosEquipos.models import ModeloEquipo 
 from apps.ModelosEquipos.models import TipoEquipo
+from apps.Proveedores.models import Proveedor
 
 class EquipoForm(forms.ModelForm):
 	marca = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -13,6 +14,7 @@ class EquipoForm(forms.ModelForm):
 	#tipos = [('','-----')]
 	#tipos += [(te.id_tipo_equipo,te.tipo_equipo) for te in TipoEquipo.objects.all()]
 	#selecttipo= forms.ChoiceField(choices = tipos, widget=forms.Select(attrs={'class': 'form-control','required':'true'}))
+	proveedores = Proveedor.objects.all()
 	
 	class Meta:
 		model = ModeloEquipo			

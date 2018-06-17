@@ -7,6 +7,7 @@ from django.views.generic import ListView, CreateView, DetailView, DeleteView, U
 from apps.ModelosEquipos.forms import EquipoForm
 from apps.ModelosEquipos.models import ModeloEquipo
 from apps.ModelosEquipos.models import TipoEquipo
+from apps.Modelos.models import ProveedorModelos
 
 class ModeloList (ListView):
 	model = ModeloEquipo
@@ -35,6 +36,11 @@ class ModeloCreate(CreateView):
 			modelo = form.save(commit=False)
 			modelo.tipo = TipoEquipo.objects.get(id_tipo_equipo=id_tipo)
 			modelo.save()
+			#asignacion de proveedores de este modelo
+			id_proveedores = request.POST.getlist('id_proveedores')
+			for pr in id_proveedores:
+				pm = ProveedorModelos(id_proveedor = pr, id_modelo = modelo.id_modelo)
+				pm.save()
 			return redirect(self.get_success_url())
 		else:
 			return self.render_to_response(self.get_context_data(form=form))
@@ -63,6 +69,16 @@ class ModeloUpdate(UpdateView):
 			id_tipo = request.POST['selecttipo']			
 			modelo.tipo = TipoEquipo.objects.get(id_tipo_equipo=id_tipo)
 			modelo.save()
+			#eliminacion de los objetos relacionados 
+			proveedor_modelo = ProveedorModelos.objects.filter(id_modelo = modelo.id_modelo)
+			for provmod in proveedor_modelo:
+				provmod.delete()
+			#asignacion de proveedores de este modelo
+			id_proveedores = request.POST.getlist('id_proveedores')
+			for pr in id_proveedores:
+				pm = ProveedorModelos(id_proveedor = pr, id_modelo = modelo.id_modelo)
+				pm.save()
+
 			return redirect(self.get_success_url())
 		else:
 			return self.render_to_response(self.get_context_data(form=form))
