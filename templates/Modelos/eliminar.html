@@ -28,7 +28,12 @@
 					<td width="70%">{{modeloequipo.capacidad_btu }}</td>
 				</tr>
 			</table>			
-			
+			{%if msj%}
+			<div class="alert alert-danger" role="alert" id="msj">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msj}}
+            </div>
+			{%endif%}
 		</div>
 		<div class="panel-footer">
 			<form method="POST">
@@ -44,7 +49,7 @@
 {%block js%}
 <script type="text/javascript">
 	$(document).ready(function(){	
-		
+		$('#msj').delay(4000).fadeOut(1000);
 
 	}); //fin del document.ready
 </script>

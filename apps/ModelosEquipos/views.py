@@ -86,5 +86,29 @@ class ModeloUpdate(UpdateView):
 class ModeloEquipoEliminar(DeleteView):
 	model = ModeloEquipo
 	template_name = 'Modelos/eliminar.html'
-	def get_success_url(self):
-		return reverse_lazy('modelos.index')
+	success_url = reverse_lazy('modelos.index')
+
+	def get_contexto_data(self, **kwargs):		
+		context = super().get_context_data(**kwargs)
+		pk = self.kwargs.get('pk',0)
+		modelo = self.model.objects.get(id_modelo = pk) #he dejado modelo como nombre genérico para Modelo
+		if object not in context:				
+			context['object'] = self.object			
+			context['id'] = pk
+			#print(kwargs)
+			msj = kwargs.get('msj')			
+			context['msj'] = msj
+			
+		return context
+
+	def post(self, request, *args, **kwargs):
+		self.object = self.get_object
+		identificador = kwargs['pk']
+		modelo = self.model.objects.get(id_modelo = identificador)
+		prov_asociados = ProveedorModelos.objects.filter(id_modelo = modelo.id_modelo)
+		if len(prov_asociados) > 0:					
+			kwargs['msj'] = 'No es posible eliminar el MODELO, desasocie los proveedores primero!'
+			return self.render_to_response(self.get_contexto_data(**kwargs))
+		else:
+			modelo.delete()
+			return redirect(self.get_success_url())
