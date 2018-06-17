@@ -6,7 +6,7 @@
 				<h3 class="panel-title">Usuarios</h3>
 					
 				<div class="float-right">
-					<a href="#" class="btn btn-success" title="Nuevo tipo"><span class="fa fa-plus"></span>Nuevo</a>
+					<a href="{%url 'usuarios.nuevo'%}" class="btn btn-success" title="Nuevo tipo"><span class="fa fa-plus"></span>Nuevo</a>
 				</div>
 						     
 		</div>
@@ -37,12 +37,12 @@
 								{%endif%}
 							</td>
 							<td class="btn-group d-flex">
-								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-info"></span></a>	
+								<a class="btn btn-secondary" title="Detalles" href="{%url 'usuarios.detalles' pk=usuario.id%}"><span class="icon-info"></span></a>	
 												
 								
-								<a class="btn btn-secondary" title="Editar" href="#"><span class="icon-note"></span></a>
+								<a class="btn btn-secondary" title="Editar" href="{%url 'usuarios.actualizar' pk=usuario.id%}"><span class="icon-note"></span></a>
 							
-								<a class="btn btn-danger" title="Eliminar" href="#"><span class="icon-trash "></span></a>											
+																			
 							</td>
 						</tr>
 					{%endfor%}		

@@ -49,7 +49,7 @@
       {% if user.is_authenticated %}         
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ user.first_name }} {{ user.last_name }}
+            {{ user.get_full_name }}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="{%url 'salir'%}">Salir</a>
@@ -79,7 +79,10 @@
             <a href="{% url 'roles.index'%}" class="nav-link"><i class="fa fa-cog"></i>Roles</a>
           </li> 
           <li class="nav-item">
-            <a href="{% url 'usuarios.index'%}" class="nav-link"><i class="fa fa-cog"></i>Usuarios</a>
+            <a href="{% url 'usuarios.index'%}" class="nav-link"><i class="fa fa-users"></i>Usuarios</a>
+          </li> 
+          <li class="nav-item">
+            <a href="{% url 'usuarios.sendemailinterno'%}" class="nav-link"><i class="fa fa-share"></i>Contactar Admin</a>
           </li>                    
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa  fa-suitcase"></i>PROVEEDORES</a>

@@ -4,6 +4,8 @@ from django.db import models
 from django.db import connection
 from collections import namedtuple
 
+from django.utils import timezone
+
 class Aux(models.Model):
 
     def dictfetchall(cursor):
@@ -52,19 +54,26 @@ class AuthGroupPermissions(models.Model):
 class AuthUser(models.Model):
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.BooleanField()
+    is_superuser = models.BooleanField(default = False)
     username = models.CharField(unique=True, max_length=150)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
+    is_staff = models.BooleanField(default = False)
+    is_active = models.BooleanField(default = True)
+    date_joined = models.DateTimeField(default=timezone.now)
 
     class Meta:
         managed = False
         db_table = 'auth_user'
 
+    def getRol(self):
+        '''with connection.cursor() as cursor:
+            cursor.execute('SELECT ag.id, ag.name from auth_group ag inner join auth_user_groups aug on ag.id = aug.user_id where aug.user_id = %s', [self.id])
+            results =  Aux.dictfetchall(cursor) 
+            return results[0]'''
+        rol_user = AuthUserGroups.objects.get(user_id=self.id)
+        return rol_user
 
 class AuthUserGroups(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
