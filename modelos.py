@@ -118,6 +118,7 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+<<<<<<< HEAD
 class TblDetCompras(models.Model):
     corr_compra = models.AutoField(primary_key=True)
     id_compra = models.ForeignKey('TblHedCompras', models.DO_NOTHING, db_column='id_compra', blank=True, null=True)
@@ -178,12 +179,20 @@ class TblModeloEquipo(models.Model):
     marca = models.CharField(max_length=100)
     nombre_modelo = models.CharField(max_length=100)
     año_fabricacion = models.CharField(max_length=4)
-    es_aire_acondicionado = models.BooleanField()
     capacidad_btu = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'tbl_modelo_equipo'
+
+
+class ProveedorModelos(models.Model):
+    id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
+    id_modelo = models.ForeignKey(TblModeloEquipo, models.DO_NOTHING, db_column='id_modelo')
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_proveedor_equipos'
 
 
 class TblProveedores(models.Model):

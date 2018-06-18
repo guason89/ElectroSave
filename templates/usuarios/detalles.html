@@ -1,0 +1,56 @@
+{%extends 'master.html'%}
+{%block contenido%}
+<div class="panel panel-info">
+		<div class="panel-heading">
+				<h3 class="panel-title">Detalle De Usuario</h3>						     
+		</div>
+		<div class="panel-body">		
+			<table class="table table-bordered">
+				<tr>
+					<td width="30%">USUARIO: </td>
+					<td width="70%">{{authuser.username}}</td>
+				</tr>
+				<tr>
+					<td width="30%">NOMBRE: </td>
+					<td width="70%">{{authuser.first_name}} {{authuser.last_name}}</td>
+				</tr>
+				<tr>
+					<td width="30%">USUARIO: </td>
+					<td width="70%">{{authuser.username}}</td>
+				</tr>
+				<tr>
+					<td width="30%">EMAIL: </td>
+					<td width="70%">{{authuser.email}}</td>
+				</tr>
+				<tr>
+					<td width="30%">ACTIVO: </td>
+					<td width="70%">
+						{%if authuser.is_active == 1%}
+						Sí
+						{%else%}
+						No
+						{%endif%}
+					</td>
+				</tr>
+				<tr>
+					<td width="30%">ULTIMA VEZ QUE SE LOGUEÓ: </td>
+					<td width="70%">{{authuser.last_login}}</td>
+				</tr>
+			</table>			
+			
+		</div>
+		<div class="panel-footer">			
+			<a href="{%url 'usuarios.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){	
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

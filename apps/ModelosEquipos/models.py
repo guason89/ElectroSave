@@ -1,4 +1,5 @@
 from django.db import models
+from apps.Modelos.models import ProveedorModelos
 #from apps.TipoEquipo.models import TipoEquipo
 class TipoEquipo(models.Model):
     id_tipo_equipo = models.AutoField(primary_key=True)
@@ -27,3 +28,6 @@ class ModeloEquipo(models.Model):
     def __str__ ( self ):
         return self.nombre_modelo
 
+    def get_proveedores_asociados(self):
+        prov_asoc = ProveedorModelos.objects.filter(id_modelo = self.id_modelo)
+        return prov_asoc

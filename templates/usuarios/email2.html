@@ -1,0 +1,55 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-info">
+	<div class="panel-heading">		
+		<h3 class="panel-title">Solicitar creación de nuevo usuario</h3>								     
+	</div>
+	<div class="panel-body">		
+		<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+			{%csrf_token%}			
+			<div class="row justify-content-md-center">
+				<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Nombres</b></div>		
+		            <input type="text" name="nombres" id="nombres" class="form-control" required="true">	                      
+	        	</div>
+	        	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Apellidos</b></div>		
+		            <input type="text" name="apellidos" id="apellidos" class="form-control" required="true">	                      
+	        	</div>			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>email</b></div>		
+		            <input type="email" name="email" id="email" class="form-control" required="true">	
+		                              
+	        	</div>
+		        <div class="form-group col-md-8">			          
+		            <div class="input-group"><b>detalles</b></div>		
+		            <textarea class="form-control" rows="3" name="mensaje" id="mensaje" required="true" placeholder="Especifique motivos de la solicitud y permisos del nuevo usuario"></textarea>	                      
+	        	</div>		       
+		    </div>				
+		</form>
+		
+	</div>
+	<div class="panel-footer">
+		<button type="submit" class="btn btn-success" form="frm_nuevo_editar">ENVIAR</button>
+		<a href="javascript:window.history.back();" style="border: 1px solid black;" type="button" id="cancelar" class="btn btn-default m-t-10"><i class="fa fa-reply-all" aria-hidden="true"></i>Regresar</a>
+	</div>
+</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

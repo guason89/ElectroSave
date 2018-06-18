@@ -1,0 +1,71 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Usuarios</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'usuarios.nuevo'%}" class="btn btn-success" title="Nuevo tipo"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_id" width="99.7%">
+					<thead>
+						<tr>
+							<th width="10%">No.</th>
+							<th width="%">NOMBRE</th>
+							<th>ROL</th>
+							<th>ACTIVO</th>
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>					
+					{%if object_list %}
+					{%for usuario in object_list%}
+						<tr>
+							<td>{{usuario.id}}</td>
+							<td>{{usuario.nombre}}</td>
+							<td>{{usuario.rol_name}}</td>
+							<td>
+								{%if usuario.is_active == 1%}
+								Si
+								{%else%}	
+								No
+								{%endif%}
+							</td>
+							<td class="btn-group d-flex">
+								<a class="btn btn-secondary" title="Detalles" href="{%url 'usuarios.detalles' pk=usuario.id%}"><span class="icon-info"></span></a>	
+												
+								
+								<a class="btn btn-secondary" title="Editar" href="{%url 'usuarios.actualizar' pk=usuario.id%}"><span class="icon-note"></span></a>
+							
+																			
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_id').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
+{%endblock%}
