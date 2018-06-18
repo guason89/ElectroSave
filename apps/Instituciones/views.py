@@ -27,10 +27,10 @@ class InstitucionesActualizar(UpdateView):
 
 '''class TipoEquipoDetalles(DetailView):
 	model = Instituciones
-	template_name = 'Instituciones/detalle.html'
+	template_name = 'Instituciones/detalle.html' '''
 
-class TipoEquipoEliminar(DeleteView):
+class InstitucionesEliminar(DeleteView):
 	model = Instituciones
 	template_name = 'Instituciones/eliminar.html'
 	def get_success_url(self):
-		return reverse_lazy('Instituciones.index')'''
+		return reverse_lazy('instituciones.index')

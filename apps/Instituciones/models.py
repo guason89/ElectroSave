@@ -17,3 +17,6 @@ class Instituciones(models.Model):
     class Meta:
         managed = False
         db_table = 'tbl_instituciones'
+
+    def __str__ ( self ):
+        return self.nombre_inst

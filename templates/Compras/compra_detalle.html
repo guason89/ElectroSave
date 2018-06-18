@@ -1,0 +1,49 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-success">
+		<div class="panel-heading">
+			{% if compras.id_compra%}
+			<h3 class="panel-title">Editar Compras</h3>
+			{% else %}
+			<h3 class="panel-title">Insertar Compras</h3>
+			{% endif %}
+										     
+		</div>
+		<div class="panel-body">		
+			<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+				{%csrf_token%}			
+				<div class="row justify-content-md-center">	
+					<div class="col-md-8">
+						{{form}}
+					</div>
+					
+					{{form.errors}}
+			    	
+			        		       
+			    </div>
+				
+			</form>
+			
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'compras.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	}); //fin del document.ready
+</script>
+{%endblock%}

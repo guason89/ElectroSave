@@ -1,0 +1,72 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">COMPRAS</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'compras.nuevo'%}" class="btn btn-success" title="crear Compra"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_hed_compras" width="99.7%">
+					<thead>
+						<tr>
+							<th width="10%">Id. COMPRA</th>
+							<th width="20%">NOMBRE PROVEEDOR</th>
+							<th width="15%">FECHA COMPRA</th>
+							<th width="20%">TIPO CONTRATACION</th>
+							<th width="10%">TOTAL COMPRA</th>
+							<th width="25%">COMENTARIOS</th>
+							<th></th>
+						</tr>
+
+
+
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for compra in object_list%}
+						<tr>
+							<td>{{compra.id_compra}}</td>
+							<td>{{compra.getProveedor}}</td>
+							<td>{{compra.fecha_compra}}</td>
+							<td>{{compra.tipo_contratacion}}</td>
+							<td>{{compra.total_compra}}</td>
+							<td>{{compra.descripcion_compra}}</td>
+							<td class="btn-group d-flex">
+								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-info"></span></a>	
+												
+								
+								<a class="btn btn-secondary" title="Editar" href="{%url 'compras.actualizar' pk=compra.id_compra%}"><span class="icon-note"></span></a>
+							
+								<a class="btn btn-danger" title="Eliminar" href="#"><span class="icon-trash "></span></a>											
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_hed_compras').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
+{%endblock%}

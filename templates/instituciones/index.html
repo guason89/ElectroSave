@@ -47,7 +47,7 @@
 								
 								<a class="btn btn-secondary" title="Editar" href="{%url 'instituciones.actualizar' pk=institucion.id_institucion%}"><span class="icon-note"></span></a>
 							
-								<a class="btn btn-danger" title="Eliminar" href="#"><span class="icon-trash "></span></a>											
+								<a class="btn btn-danger" title="Eliminar" href="{%url 'instituciones.eliminar' pk=institucion.id_institucion%}"><span class="icon-trash "></span></a>											
 							</td>
 						</tr>
 					{%endfor%}		

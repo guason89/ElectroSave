@@ -118,6 +118,32 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class TblDetCompras(models.Model):
+    corr_compra = models.AutoField(primary_key=True)
+    id_compra = models.ForeignKey('TblHedCompras', models.DO_NOTHING, db_column='id_compra', blank=True, null=True)
+    id_modelo = models.IntegerField(blank=True, null=True)
+    cantidad = models.IntegerField(blank=True, null=True)
+    valor_unidad = models.DecimalField(max_digits=13, decimal_places=2, blank=True, null=True)
+    serie_equipo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_det_compras'
+
+
+class TblHedCompras(models.Model):
+    id_compra = models.AutoField(primary_key=True)
+    id_proveedor = models.IntegerField(blank=True, null=True)
+    fecha_compra = models.DateField(blank=True, null=True)
+    tipo_contratacion = models.IntegerField(blank=True, null=True)
+    total_compra = models.FloatField(blank=True, null=True)
+    descripcion_compra = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_hed_compras'
+
+
 class TblInstituciones(models.Model):
     id_institucion = models.AutoField(primary_key=True)
     fecha_creacion_inst = models.DateField()
@@ -135,7 +161,6 @@ class TblInstituciones(models.Model):
         db_table = 'tbl_instituciones'
 
 
-
 class TblIntentos(models.Model):
     id_intento = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100)
@@ -147,7 +172,7 @@ class TblIntentos(models.Model):
         db_table = 'tbl_intentos'
 
 
-class TblModelo(models.Model):
+class TblModeloEquipo(models.Model):
     id_modelo = models.AutoField(primary_key=True)
     id_tipo_equipo = models.ForeignKey('TblTipoEquipo', models.DO_NOTHING, db_column='id_tipo_equipo')
     marca = models.CharField(max_length=100)
@@ -158,7 +183,7 @@ class TblModelo(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tbl_modelo'
+        db_table = 'tbl_modelo_equipo'
 
 
 class TblProveedores(models.Model):
@@ -175,3 +200,12 @@ class TblProveedores(models.Model):
     class Meta:
         managed = False
         db_table = 'tbl_proveedores'
+
+
+class TblTipoEquipo(models.Model):
+    id_tipo_equipo = models.AutoField(primary_key=True)
+    tipo_equipo = models.CharField(max_length=250)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_tipo_equipo'
