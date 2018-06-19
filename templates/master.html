@@ -83,8 +83,11 @@
             </ul>
           </li>                   
           <li class="nav-item">
-            <a href="{% url 'compras.index'%}" class="nav-link"><i class="fa fa-shopping-cart"></i>COMPRAS</a>
-          </li>                   
+            <a href="{% url 'compras.index'%}" class="nav-link"><i class="fa fa-shopping-cart"></i>Compras</a>
+          </li> 
+          <li class="nav-item">
+            <a href="{% url 'mtto.index'%}" class="nav-link"><i class="fa fa-wrench"></i>Mantenimientos</a>
+          </li>                  
           </li>
           <li class="nav-item">
             <a href="{% url 'roles.index'%}" class="nav-link"><i class="fa fa-cog"></i>Roles</a>
@@ -106,7 +109,10 @@
               </li>
               <li class="nav-item">                
                 <a href="{%url 'modelos.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Modelos</a>                
-              </li>            
+              </li>
+              <li class="nav-item">                
+                <a href="{%url 'tec.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Técnicos</a>                
+              </li>             
             </ul>
           </li>
         </ul>

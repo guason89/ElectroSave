@@ -28,15 +28,21 @@
 					{%for install in object_list%}
 						<tr>
 							<td>{{install.id_instalacion}}</td>
-							<td>{{install.id_proveedor}}</td>
+							<td>{{install.getProveedor}}</td>
 							<td>{{install.fecha_inst}}</td>
 							<td>{{install.fecha_sol_inst}}</td>
 							<td>{{install.estatus_inst}}</td>
-							<td>{{install.id_equipo}}</td>							
+							<td>
+							{%if install.estatus_inst == 'PROGRAMADO' %}
+								{{install.getEquipoDetalle.detalle}}
+							{%else%}
+								{{install.getEquipoDetalle.num_serie_e}}
+							{%endif%}
+							</td>							
 							<td class="btn-group d-flex">
-								
-								<a class="btn btn-secondary" title="Editar" href="#"><span class="icon-note"></span></a>							
-																		
+								{%if install.estatus_inst == 'PROGRAMADO'%}
+								<a class="btn btn-secondary" title="Editar" href="{%url 'instalaciones.actualizar' pk=install.id_instalacion%}"><span class="icon-note"></span></a>							
+								{%endif%}										
 							</td>
 						</tr>
 					{%endfor%}		

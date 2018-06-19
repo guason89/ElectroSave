@@ -327,3 +327,20 @@ class Instalacion(models.Model):
     class Meta:
         managed = False
         db_table = 'tbl_instalacion'
+
+    def getProveedor(self):
+        prov = Proveedor.objects.get(id_proveedor = self.id_proveedor)
+        return prov.nombre
+
+    def getEquipoDetalle(self):
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id_equipo,num_serie_e, nombre_modelo||'/'||marca||'/'||fecha_compra||'/'||nombre_prov as detalle from v_det_equipo where id_equipo =  %s", [self.id_equipo])
+            results =  Aux.dictfetchall(cursor)
+            if results:
+                return results[0]
+            else:
+                return Null
+
+    def getSerieEquipo(self):
+        eq = Equipos.objects.get(id_equipo = self.id_equipo)
+        return eq

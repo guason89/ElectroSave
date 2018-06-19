@@ -1,0 +1,80 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-success">
+	<div class="panel-heading">
+		
+		<h3 class="panel-title">Editar Instalacion</h3>
+										     
+	</div>
+	<div class="panel-body">		
+		<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+			{%csrf_token%}			
+			<div class="row justify-content-md-center">			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Proveedor</b></div>		
+		            <input type="text" name="" value="{{object.getProveedor}}" disabled="true" class="form-control">           	                      
+		        </div>		       	       
+		    </div>
+		    
+		    <div class="row justify-content-md-center">			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Fecha solicitud instalación</b></div>		
+		            <input type="text" name="" value="{{object.fecha_sol_inst}}" disabled="true" class="form-control">
+		        </div>		       	       
+		    </div>
+		    <div class="row justify-content-md-center">			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Estado de la instalación</b></div>		
+		            <input type="text" name="" value="{{object.estatus_inst}}" disabled="true" class="form-control">
+		        </div>		       	       
+		    </div>
+		    <div class="row justify-content-md-center">			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Equipo</b></div>		
+		            <input type="text" name="" value="{{object.getEquipoDetalle.detalle}}" disabled="true" class="form-control">
+		        </div>		       	       
+		    </div>
+		    <div class="row justify-content-md-center">			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Fecha instalación</b></div>		
+		            {{form.fecha_inst}}
+		            <div class="error">{{form.fecha_inst.errors}}</div>	
+		        </div>		       	       
+		    </div>
+		    <div class="row justify-content-md-center">			    
+		    	<div class="form-group col-md-8">			          
+		            <div class="input-group"><b>Número Serie</b></div>		
+		            <input type="text" name="num_serie" value="" class="form-control">
+		        </div>		       	       
+		    </div>				
+		</form>
+		
+	</div>
+	<div class="panel-footer">
+		<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+		<a href="{%url 'instalaciones.index'%}" class="btn btn-secondary">Regresar</a>
+	</div>
+</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$(".datepicker2").datepicker({   
+		    todayHighlight: true,
+		    autoclose: true,
+		});
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}
