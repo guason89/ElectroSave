@@ -1,0 +1,37 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<div class="panel panel-success">
+		<div class="panel-heading">
+			{% if tecnico.tecnico_id %}
+			<h3 class="panel-title">Editar Mantenimiento</h3>
+			{% else %}
+			<h3 class="panel-title">Insertar Mantenimiento</h3>
+			{% endif %}
+										     
+		</div>
+		<div class="panel-body">		
+			
+			<form method = "POST" class="form form-vertical" id="frm_tec_nuevo" autocomplete="off">
+				{% csrf_token %}
+				{{ form.as_p}}
+			</form>
+			<div class="panel-footer">
+				<button type="submit" class="btn btn-success" form="frm_tec_nuevo">GUARDAR</button>
+				<a href="{%url 'tec.index'%}" class="btn btn-secondary">Regresar</a>
+			</div>
+		</div>
+		
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+
+{%endblock%}

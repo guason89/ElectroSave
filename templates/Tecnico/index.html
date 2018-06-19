@@ -1,0 +1,61 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Tecnicos</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'tec.create' %}" class="btn btn-success" title="Nuevo Tecnico"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_tec" width="99.7%">
+					<thead>
+						<tr>
+							<th>Tecnico ID</th>
+							<th>Nombre </th>
+							<th>Proveedor</th>
+							<th width="10%">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for Tecnico in object_list%}
+						<tr>
+							<td>{{ Tecnico.tecnico_id }}</td>
+							<td>{{ Tecnico.tecnico_nombre }}</td>
+							<td>{{ Tecnico.get_proveedor }}</td>
+							<td class="btn-group d-flex">					
+								
+								<a class="btn btn-secondary" title="Editar" href="{% url 'tec.update' pk=Tecnico.tecnico_id %}"><span class="icon-note"></span></a>
+							
+								<a class="btn btn-danger" title="Eliminar" href="{% url 'tec.delete' pk=Tecnico.tecnico_id %}"><span class="icon-trash "></span></a>											
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_tec').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
+{%endblock%}

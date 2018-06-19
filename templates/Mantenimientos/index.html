@@ -1,0 +1,73 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Mantenimientos</h3>
+					
+				<div class="float-right">
+					<a href="{%url 'mtto.create' %}" class="btn btn-success" title="Nuevo Mantenimiento"><span class="fa fa-plus"></span>Nuevo</a>
+				</div>
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_mtto" width="99.7%">
+					<thead>
+						<tr>
+							<th width="10%">Id</th>
+							<th width="10%">Fecha de Mtto</th>
+							<th width="10%">Proximo Mtto</th>
+							<th>Estado Inicial</th>
+							<th>Estado Final</th>
+							<th>Comentarios</th>
+							<th width="10%">Costo Mtto</th>
+						    <th width="5%">Tecnico</th>
+							<th width="10%">Equipo Id</th>
+							<th width="10%">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for Mantenimiento in object_list%}
+						<tr>
+							<td>{{Mantenimiento.mtto_id}}</td>
+							<td>{{Mantenimiento.mtto_fecha}}</td>
+							<td>{{Mantenimiento.mtto_fecha_prox}}</td>
+							<td>{{Mantenimiento.mtto_estado_i}}</td>
+							<td>{{Mantenimiento.mtto_estado_f}}</td>
+							<td>{{Mantenimiento.mtto_comentario}}</td>
+							<td>{{Mantenimiento.mtto_costo}}</td>
+							<td>{{Mantenimiento.get_tecnico}}</td>
+							<td>{{Mantenimiento.equipo_id}}</td>
+							<td class="btn-group d-flex">					
+								
+								<a class="btn btn-secondary" title="Editar" href="{% url 'mtto.update' pk=Mantenimiento.mtto_id %}"><span class="icon-note"></span></a>
+							
+								<a class="btn btn-danger" title="Eliminar" href="{% url 'mtto.delete' pk=Mantenimiento.mtto_id %}"><span class="icon-trash "></span></a>											
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_mtto').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
+{%endblock%}

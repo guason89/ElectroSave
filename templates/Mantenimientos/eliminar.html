@@ -1,0 +1,62 @@
+{%extends 'master.html'%}
+{%block contenido%}
+<div class="panel panel-danger">
+		<div class="panel-heading">
+				<h3 class="panel-title">Eliminar Mantenimiento</h3>						     
+		</div>
+		<div class="panel-body">
+			<p class="error">Esta seguro que desea eliminar el Matenimiento : {{ mantenimiento.mtto_id }}?</p>		
+			<table class="table table-striped">
+				<tr>
+					<td width="30%">Fecha de Mantenimiento: </td>
+					<td width="70%">{{mantenimiento.mtto_fecha }}</td>
+				</tr>
+				<tr>
+					<td>PROXIMO MANTENIMIENTO: </td>
+					<td>{{mantenimiento.mtto_fecha_prox }}</td>
+				</tr>
+				<tr>
+					<td>ESTADO INICIAL: </td>
+					<td>{{mantenimiento.mtto_estado_i }}</td>
+				</tr>
+				<tr>
+					<td>ESTADO FINAL: </td>
+					<td>{{mantenimiento.mtto_estado_f }}</td>
+				</tr>
+				<tr>
+					<td>COMENTARIO: </td>
+					<td>{{mantenimiento.mtto_comentario }}</td>
+				</tr>
+				<tr>
+					<td>COSTO $: </td>
+					<td>{{mantenimiento.mtto_costo }}</td>
+				</tr>				
+				<tr>
+					<td>ID TECNICO DE MANTENIMIENTO: </td>
+					<td>{{ mantenimiento.tecnico_id }}</td>
+				</tr>
+				<tr>
+					<td>EQUIPO ASOCIADO A MANTENIMIENTO: </td>
+					<td>{{ mantenimiento.equipo_id }}</td>
+				</tr>
+			</table>			
+		</div>
+		<div class="panel-footer">
+			<form method="POST">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-danger" value="Si, Eliminar."/>			
+				<a href="{%url 'mtto.index' %}" class="btn btn-secondary">Regresar</a>
+			</form>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){	
+		
+
+	}); //fin del document.ready
+</script>
+{%endblock%}

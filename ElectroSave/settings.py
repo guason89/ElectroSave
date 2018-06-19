@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'apps.Instituciones',
     'apps.ModelosEquipos',
     'apps.Roles',
-    'apps.Usuarios'
+    'apps.Usuarios',
+    'apps.Mantenimientos',
+    'apps.Tecnicos',
 
 ]
 
