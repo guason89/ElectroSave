@@ -1,31 +1,89 @@
 {%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
 {%block contenido%}
-<div class="panel panel-info">
-		<div class="panel-heading">
-				<h3 class="panel-title">Detalle Tipo de Equipo : {{tipoequipo}}</h3>						     
+<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+{%csrf_token%}	
+	<div class="panel panel-success">
+		<div class="panel-heading">			
+			<h3 class="panel-title">Detalle de Compra</h3>										     
+		</div>
+		<div class="panel-body">							
+			<div class="row justify-content-md-center">	
+				<div class="col-md-12 table-responsive">
+					<table class="table table-th-block table-hover table-bordered">
+						<thead>
+							<tr>								
+								<th>Id. COMPRA</th>
+								<th>INSTITUCIÓN</th>
+								<th>NOMBRE PROVEEDOR</th>
+								<th>FECHA COMPRA</th>
+								<th>FORMA CONTRATACION</th>
+								<th>TOTAL COMPRA</th>
+								<th>COMENTARIOS</th>													
+							</tr>
+						</thead>
+						<tbody>						
+							<tr>
+								<td style="vertical-align: middle;">{{object.id_compra}}</td>
+								<td style="vertical-align: middle;">{{object.getInstitucion}}</td>
+								<td style="vertical-align: middle;">{{object.getProveedor}}</td>
+								<td style="vertical-align: middle;">{{object.fecha_compra}}</td>
+								<td style="vertical-align: middle;">{{object.getFormaContratacion}}</td>
+								<td style="vertical-align: middle;">{{object.total_compra}}</td>
+								<td style="vertical-align: middle;">{{object.descripcion_compra}}</td>		
+							</tr>								
+						</tbody>
+					</table>					
+				</div>		        		       
+		    </div>		
+		</div>			
+	</div>
+	<div class="panel panel-success">
+		<div class="panel-heading">		
+			<h3 class="panel-title">Items</h3>								     
 		</div>
 		<div class="panel-body">		
-			<table class="table table-bordered">
-				<tr>
-					<td width="30%">TIPO DE EQUIPO: </td>
-					<td width="70%">{{tipoequipo.tipo_equipo}}</td>
-				</tr>
-				
-			</table>			
-			
+		    <div >	
+			    <table id="tbl_items" class="table table-th-block table-hover table-bordered">
+			    	<thead>
+			    		<tr>
+			    			<th width="40%">MODELO</th>
+			    			<th>CANTIDAD</th>
+			    			<th>VALOR</th>			    				    			
+			    		</tr>
+			    	</thead>
+			    	<tbody>
+			    		{%for detalle in object.getDetalles%}
+			    		<tr>
+			    			<td><input type="hidden" name="valor_item" value="{{detalle.concatenado}}">{{detalle.nombre_modelo}}</td>
+			    			<td>{{detalle.cantidad}}</td>
+			    			<td>{{detalle.valor_unidad}}</td>			    			
+			    		</tr>
+			    		{%endfor%}
+			    	</tbody>
+			    </table>
+			    
+			</div>	    	
 		</div>
-		<div class="panel-footer">			
-			<a href="{%url 'tipo_equipo.index'%}" class="btn btn-secondary">Regresar</a>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'compras.index'%}" class="btn btn-secondary">Regresar</a>
 		</div>
 	</div>
-	
+</form>
 {%endblock%}
 
 {%block js%}
 <script type="text/javascript">
 	$(document).ready(function(){	
 		
-
 	}); //fin del document.ready
+
 </script>
 {%endblock%}

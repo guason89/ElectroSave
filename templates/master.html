@@ -70,9 +70,17 @@
           </li>
           <li class="nav-item">
             <a href="{% url 'home'%}" class="nav-link"><i class="icon-home"></i>Inicio</a>
-          </li>                 
-          <li class="nav-item">
-            <a href="{% url 'instituciones.index'%}" class="nav-link"><i class="icon-home"></i>INSTITUCIONES</a>
+          </li>         
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-university"></i>INSTITUCIONES</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">                
+                <a href="{% url 'instituciones.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Instituciones</a>                
+              </li>
+              <li class="nav-item">            
+                <a href="{% url 'instalaciones.index'%}" class="nav-link"><i class="fa fa-chevron-right"></i>Instalaciones</a>
+              </li>                          
+            </ul>
           </li>                   
           <li class="nav-item">
             <a href="{% url 'compras.index'%}" class="nav-link"><i class="fa fa-shopping-cart"></i>COMPRAS</a>

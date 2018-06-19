@@ -42,12 +42,12 @@
 							<td>{{institucion.complemento_dir}}</td>
 							<td>{{institucion.presupuesto}}</td>
 							<td class="btn-group d-flex">
-								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-info"></span></a>	
-												
 								
 								<a class="btn btn-secondary" title="Editar" href="{%url 'instituciones.actualizar' pk=institucion.id_institucion%}"><span class="icon-note"></span></a>
 							
-								<a class="btn btn-danger" title="Eliminar" href="{%url 'instituciones.eliminar' pk=institucion.id_institucion%}"><span class="icon-trash "></span></a>											
+								<a class="btn btn-danger" title="Eliminar" href="{%url 'instituciones.eliminar' pk=institucion.id_institucion%}"><span class="icon-trash "></span></a>
+
+								<a class="btn btn-secondary" title="Programar instalación" href="{%url 'instituciones.instalacion' pk=institucion.id_institucion%}"><span class="icon-calendar"></span></a>											
 							</td>
 						</tr>
 					{%endfor%}		

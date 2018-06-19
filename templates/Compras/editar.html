@@ -1,0 +1,164 @@
+{%extends 'master.html'%}
+
+{%block css%}
+<style type="text/css">
+	
+</style>
+{%endblock%}
+
+{%block contenido%}
+<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+{%csrf_token%}	
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			{% if object.id_compra%}
+			<h3 class="panel-title">Editar Compras</h3>
+			{% else %}
+			<h3 class="panel-title">Insertar Compras</h3>
+			{% endif %}
+										     
+		</div>
+		<div class="panel-body">
+			{%if msj%}
+			<div class="alert alert-danger" role="alert" id="msj">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msj}}
+            </div>
+			{%endif%}				
+			<div class="row justify-content-md-center">	
+				<div class="col-md-12 table-responsive">
+					<table class="table table-th-block table-hover table-bordered">
+						<thead>
+							<tr>								
+								<th>Id. COMPRA</th>
+								<th>INSTITUCIÓN</th>
+								<th>NOMBRE PROVEEDOR</th>
+								<th>FECHA COMPRA</th>
+								<th>FORMA CONTRATACION</th>
+								<th>TOTAL COMPRA</th>
+								<th>COMENTARIOS</th>													
+							</tr>
+						</thead>
+						<tbody>						
+							<tr>
+								<td style="vertical-align: middle;">{{object.id_compra}}</td>
+								<td style="vertical-align: middle;">{{object.getInstitucion}}</td>
+								<td style="vertical-align: middle;">{{object.getProveedor}}</td>
+								<td style="vertical-align: middle;">{{object.fecha_compra}}</td>
+								<td style="vertical-align: middle;">{{object.getFormaContratacion}}</td>
+								<td style="vertical-align: middle;">{{object.total_compra}}</td>
+								<td style="vertical-align: middle;">{{object.descripcion_compra}}</td>		
+							</tr>								
+						</tbody>
+					</table>					
+				</div>		        		       
+		    </div>		
+		</div>			
+	</div>
+	<div class="panel panel-success">
+		<div class="panel-heading">		
+			<h3 class="panel-title">Agregar items</h3>								     
+		</div>
+		<div class="panel-body">				
+			<div class="row">	
+				<div class="form-group col-md-12">			          
+		            <div class="input-group"><b>Modelo de equipo</b></div>		
+		            <select name="modelo", id="modelo", class="form-control">
+		            	<option value="">-----</option>
+		            	{%for modelo in object.getModelosEquipos%}
+		            	<option value="{{modelo.id_modelo}}||{{modelo.nombre_modelo}}">{{modelo.nombre_modelo}}</option>
+		            	{%endfor%}
+		            </select>	                      
+		        </div>
+		        <div class="form-group col-md-4">			          
+		            <div class="input-group"><b>Cantidad</b></div>		
+		            <input type="text" name="cantidad" id="cantidad" class="form-control">	                      
+		        </div>
+		        <div class="form-group col-md-4">			          
+		            <div class="input-group"><b>Valor Unidad</b></div>		
+		            <input type="number" name="valor_unidad" id="valor_unidad" min="0" class="form-control" step="any">	                      
+		        </div>		        
+		        <div class="form-group col-md-6">			          
+		            <a onclick="agregarFila();" class="btn btn-info" class="form-control">Agregar</a> 	                      
+		        </div>		               		       
+		    </div>
+		    <div >	
+			    <table id="tbl_items" class="table table-th-block table-hover table-bordered">
+			    	<thead>
+			    		<tr>
+			    			<th width="40%">MODELO</th>
+			    			<th>CANTIDAD</th>
+			    			<th>VALOR</th>	
+			    			<th></th>	    			
+			    		</tr>
+			    	</thead>
+			    	<tbody>
+			    		{%for detalle in object.getDetalles%}
+			    		<tr>
+			    			<td><input type="hidden" name="valor_item" value="{{detalle.concatenado}}">{{detalle.nombre_modelo}}</td>
+			    			<td>{{detalle.cantidad}}</td>
+			    			<td>{{detalle.valor_unidad}}</td>
+			    			<td><a class="btn btn-danger btn-perspective btnEliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+			    		</tr>
+			    		{%endfor%}
+			    	</tbody>
+			    </table>
+			    
+			</div>	    	
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'compras.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+</form>
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".datepicker2").datepicker({   
+		    todayHighlight: true,
+		    autoclose: true,
+		});
+
+		$("#cantidad").mask('999');
+		
+	}); //fin del document.ready
+
+	/*funcion para agregar filas*/
+	function agregarFila()
+	{
+		var model =  $("#modelo").val();
+		var aux = model.split("||");
+		var model_id = aux[0];
+		var model_name = aux[1];
+		var cant = $("#cantidad").val();
+		var valor = $("#valor_unidad").val();
+
+		if(model.length>0 && cant.length>0 && valor.length>0)
+		{
+			$('#tbl_items').append('<tr><td><input type="hidden" name="valor_item" value="'+model_id+'||'+cant+'||'+valor+'">'+model_name+'</td><td>'+cant+'</td><td>'+valor+'</td><td><a class="btn btn-danger btn-perspective btnEliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td></tr>');
+
+			//se elimina la opcion del combobox
+			var sel = document.getElementById("modelo");
+  			sel.remove(sel.selectedIndex);
+			
+			$("#modelo").val('');
+			$("#cantidad").val('');
+			$("#valor_unidad").val('');		
+									
+		}
+		else
+		{
+			alert("Debe rellenar todos los campos para agregar item!");
+		}
+	}
+
+	$("#tbl_items").on('click', '.btnEliminar', function () {
+      $(this).closest('tr').remove();
+  	});
+
+	
+</script>
+{%endblock%}

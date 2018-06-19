@@ -15,13 +15,14 @@
 				<table class="table table-th-block table-hover table-bordered" id="tbl_hed_compras" width="99.7%">
 					<thead>
 						<tr>
-							<th width="10%">Id. COMPRA</th>
-							<th width="20%">NOMBRE PROVEEDOR</th>
-							<th width="15%">FECHA COMPRA</th>
-							<th width="20%">TIPO CONTRATACION</th>
-							<th width="10%">TOTAL COMPRA</th>
-							<th width="25%">COMENTARIOS</th>
-							<th></th>
+							<th>Id. COMPRA</th>
+							<th>INSTITUCIÓN</th>
+							<th>NOMBRE PROVEEDOR</th>
+							<th>FECHA COMPRA</th>
+							<th>FORMA CONTRATACION</th>
+							<th>TOTAL COMPRA</th>
+							<th>COMENTARIOS</th>
+							<th width="5%"></th>
 						</tr>
 
 
@@ -31,19 +32,19 @@
 					{%if object_list %}
 					{%for compra in object_list%}
 						<tr>
-							<td>{{compra.id_compra}}</td>
-							<td>{{compra.getProveedor}}</td>
-							<td>{{compra.fecha_compra}}</td>
-							<td>{{compra.tipo_contratacion}}</td>
-							<td>{{compra.total_compra}}</td>
-							<td>{{compra.descripcion_compra}}</td>
-							<td class="btn-group d-flex">
-								<a class="btn btn-secondary" title="Detalles" href="#"><span class="icon-info"></span></a>	
+							<td style="vertical-align: middle;">{{compra.id_compra}}</td>
+							<td style="vertical-align: middle;">{{compra.getInstitucion}}</td>
+							<td style="vertical-align: middle;">{{compra.getProveedor}}</td>
+							<td style="vertical-align: middle;">{{compra.fecha_compra}}</td>
+							<td style="vertical-align: middle;">{{compra.getFormaContratacion}}</td>
+							<td style="vertical-align: middle;">{{compra.total_compra}}</td>
+							<td style="vertical-align: middle;">{{compra.descripcion_compra}}</td>
+							<td >
+								<a class="btn btn-secondary" title="Detalles" href="{%url 'compras.detalles' pk=compra.id_compra%}" style="display: inline-block;"><span class="icon-info"></span></a>	
 												
 								
-								<a class="btn btn-secondary" title="Editar" href="{%url 'compras.actualizar' pk=compra.id_compra%}"><span class="icon-note"></span></a>
-							
-								<a class="btn btn-danger" title="Eliminar" href="#"><span class="icon-trash "></span></a>											
+								<a class="btn btn-secondary" title="Editar" href="{%url 'compras.actualizar' pk=compra.id_compra%}" style="display: inline-block;"><span class="icon-note"></span></a>							
+																			
 							</td>
 						</tr>
 					{%endfor%}		

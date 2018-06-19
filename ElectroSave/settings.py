@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'apps.ModelosEquipos',
     'apps.Roles',
     'apps.Compras',
-    'apps.Usuarios'
+    'apps.Usuarios',
+    'apps.Instalaciones'
 
 ]
 
