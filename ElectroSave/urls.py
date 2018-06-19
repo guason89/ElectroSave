@@ -22,8 +22,9 @@ urlpatterns = [
     path ( 'instituciones/' , include ( 'apps.Instituciones.urls' )),
     path ( 'modelos/' , include ( 'apps.ModelosEquipos.urls' )),
     path ( 'roles/' , include ( 'apps.Roles.urls' )), 
+    path ( 'compras/' , include ( 'apps.Compras.urls' )), 
     path ( 'usuarios/' , include ( 'apps.Usuarios.urls' )), 
-    #Marvin Segura
     path ( 'mantenimientos/' , include ( 'apps.Mantenimientos.urls' )),
     path ( 'tecnicos/' , include ( 'apps.Tecnicos.urls' )),
+    path ( 'instalaciones/' , include ( 'apps.Instalaciones.urls' )),
 ]

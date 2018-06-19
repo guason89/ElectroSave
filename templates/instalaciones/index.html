@@ -1,0 +1,65 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Instalaciones</h3>			
+						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_instituciones" width="99.7%">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>PROVEEDOR</th>
+							<th>FECHA INSTALACION</th>
+							<th>FECHA SOLICITUD</th>
+							<th>ESTADO</th>
+							<th>EQUIPO</th>							
+							<th></th>
+						</tr>
+
+
+
+					</thead>
+					<tbody>
+					{%if object_list %}
+					{%for install in object_list%}
+						<tr>
+							<td>{{install.id_instalacion}}</td>
+							<td>{{install.id_proveedor}}</td>
+							<td>{{install.fecha_inst}}</td>
+							<td>{{install.fecha_sol_inst}}</td>
+							<td>{{install.estatus_inst}}</td>
+							<td>{{install.id_equipo}}</td>							
+							<td class="btn-group d-flex">
+								
+								<a class="btn btn-secondary" title="Editar" href="#"><span class="icon-note"></span></a>							
+																		
+							</td>
+						</tr>
+					{%endfor%}		
+
+					{%endif%}			
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	    $('#tbl_instituciones').DataTable(
+	      {         
+	          "lengthChange": false,
+	           "autoWidth": true,              
+	      });
+  	});
+</script>
+{%endblock%}

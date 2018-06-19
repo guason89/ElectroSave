@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +48,9 @@ INSTALLED_APPS = [
     'apps.Usuarios',
     'apps.Mantenimientos',
     'apps.Tecnicos',
+    'apps.Compras',
+    'apps.Usuarios',
+    'apps.Instalaciones'
 
 ]
 

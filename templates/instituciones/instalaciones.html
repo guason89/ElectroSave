@@ -1,0 +1,102 @@
+{%extends 'master.html'%}
+
+{%block contenido%}
+	<div class="panel panel-success">
+		<div class="panel-heading">
+				<h3 class="panel-title">Programar instalación de equipos</h3>						     
+		</div>
+		<div class="panel-body">		
+			<div class="table-responsive">
+				<table class="table table-th-block table-hover table-bordered" id="tbl_instituciones" width="99.7%">
+					<thead>
+						<tr>							
+							<th width="25%">NOMBRE INSTITUCION</th>
+							<th width="10%">NIT</th>
+							<th width="5%">TELEFONO1</th>
+							<th width="5%">TELEFONO2</th>
+							<th width="30%">DIRECCION</th>
+							<th width="7%">PRESUPUESTO</th>
+						</tr>
+
+
+
+					</thead>
+					<tbody>
+					{%if object%}					
+						<tr>							
+							<td>{{object.nombre_inst}}</td>
+							<td>{{object.nit_inst}}</td>
+							<td>{{object.telefono_1_inst}}</td>
+							<td>{{object.telefono_2_inst}}</td>
+							<td>{{object.complemento_dir}}</td>
+							<td>{{object.presupuesto}}</td>							
+						</tr>
+					{%endif%}			
+					</tbody>					
+				</table>
+				<form method="post" class="form form-vertical" id="frm_nuevo_editar" autocomplete="off">
+				{%csrf_token%}	
+				<div class="row justify-content-md-center">
+					<div class="form-group col-md-8">
+		            	<div class="input-group"><b>SELECCIONAR EQUIPOS PARA INSTALACIÓN</b></div>	
+		            	<table class="table table-th-block table-hover table-bordered">
+		            		<thead></thead>
+		            		<tbody>
+		            		{%for equipo in object.getEquipos%}
+		            		<tr>	
+		            			<td>
+				             	<input 
+				             		type="checkbox" 
+				             		name="id_equipos" 
+				             		value="{{equipo.id_equipo}}" 
+				             		class="form-control"				             			         		
+				             	>
+				             	</td>
+				             	<td>{{equipo.nombre_modelo}}, {{equipo.fecha_compra}}, {{equipo.nombre_prov}}, {{equipo.marca}}</td>
+				            </tr>
+  						 	{%endfor%}			            			
+		            		</tbody>
+		            	</table> 				            			            	                      
+		        	</div>
+		        	<div class="form-group col-md-8">
+		            	<div class="input-group"><b>SELECCIONAR PROVEEDOR QUE HARÄ PARA INSTALACIÓN</b></div>	
+		            	 <select name="proveedor" class="form-control" required="">
+		            	 	<option value="">----</option>
+		            	 	{%for proveedor in object.get_prov_asoc%}
+		            	 	<option value="{{proveedor.id_proveedor}}">{{proveedor.nombre}}</option>
+		            	 	{%endfor%}
+		            	 </select>				            			            	                      
+		        	</div>
+		        	<div class="form-group col-md-8">
+		            	<div class="input-group"><b>SELECCIONAR PROVEEDOR QUE HARÁ PARA INSTALACIÓN</b></div>	
+		            	 <input type="text" name="fecha" required="" class="form-control datepicker2" data-date-format="yyyy-mm-dd">				            			          	                      
+		        	</div>
+		        </div>
+		        </form>	
+			</div>
+			{%if msj%}
+			<div class="alert alert-danger" role="alert" id="msj">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msj}}
+            </div>
+			{%endif%}
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-success" form="frm_nuevo_editar">GUARDAR</button>
+			<a href="{%url 'instituciones.index'%}" class="btn btn-secondary">Regresar</a>
+		</div>
+	</div>
+	
+{%endblock%}
+
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function(){
+  
+	  	$(".datepicker2").datepicker({   
+		    todayHighlight: true,
+		    autoclose: true,
+		});
+  	});
+</script>
+{%endblock%}

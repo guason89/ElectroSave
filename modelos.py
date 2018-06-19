@@ -118,6 +118,94 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class TblDetCompras(models.Model):
+    id_detalle_compra = models.AutoField(primary_key=True)
+    id_compra = models.ForeignKey('TblHedCompras', models.DO_NOTHING, db_column='id_compra')
+    id_modelo = models.ForeignKey('TblModeloEquipo', models.DO_NOTHING, db_column='id_modelo')
+    cantidad = models.IntegerField(blank=True, null=True)
+    valor_unidad = models.DecimalField(max_digits=13, decimal_places=2, blank=True, null=True)
+    total_item = models.DecimalField(max_digits=13, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_det_compras'
+
+
+class TblEquipos(models.Model):
+    id_equipo = models.AutoField(primary_key=True)
+    num_serie_e = models.CharField(max_length=60, blank=True, null=True)
+    id_modelo = models.ForeignKey('TblModeloEquipo', models.DO_NOTHING, db_column='id_modelo', blank=True, null=True)
+    id_institucion = models.ForeignKey('TblInstituciones', models.DO_NOTHING, db_column='id_institucion', blank=True, null=True)
+    id_detalle_compra = models.IntegerField()
+    estado_e = models.CharField(max_length=40, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_equipos'
+
+
+class TblFormaContratacion(models.Model):
+    id_forma_cont = models.AutoField(primary_key=True)
+    descripcion_tc = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_forma_contratacion'
+
+
+class TblHedCompras(models.Model):
+    id_compra = models.AutoField(primary_key=True)
+    id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
+    id_institucion = models.ForeignKey('TblInstituciones', models.DO_NOTHING, db_column='id_institucion')
+    fecha_compra = models.DateField()
+    id_tipo_cont = models.ForeignKey(TblFormaContratacion, models.DO_NOTHING, db_column='id_tipo_cont')
+    total_compra = models.FloatField(blank=True, null=True)
+    descripcion_compra = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_hed_compras'
+
+
+class TblInstalacion(models.Model):
+    id_instalacion = models.AutoField(primary_key=True)
+    id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
+    fecha_inst = models.DateField(blank=True, null=True)
+    fecha_sol_inst = models.DateField(blank=True, null=True)
+    estatus_inst = models.CharField(max_length=-1, blank=True, null=True)
+    id_equipo = models.ForeignKey(TblEquipos, models.DO_NOTHING, db_column='id_equipo')
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_instalacion'
+
+
+class TblInstitucionProveedores(models.Model):
+    id_institucion = models.ForeignKey('TblInstituciones', models.DO_NOTHING, db_column='id_institucion')
+    id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_institucion_proveedores'
+
+
+class TblInstituciones(models.Model):
+    id_institucion = models.AutoField(primary_key=True)
+    fecha_creacion_inst = models.DateField()
+    nombre_inst = models.CharField(max_length=250)
+    nit_inst = models.CharField(max_length=17, blank=True, null=True)
+    telefono_1_inst = models.CharField(max_length=12, blank=True, null=True)
+    telefono_2_inst = models.CharField(max_length=12, blank=True, null=True)
+    departamento_inst = models.CharField(max_length=60, blank=True, null=True)
+    municipio_inst = models.CharField(max_length=60, blank=True, null=True)
+    complemento_dir = models.CharField(max_length=250, blank=True, null=True)
+    presupuesto = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tbl_instituciones'
+
+
 class TblIntentos(models.Model):
     id_intento = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100)
@@ -142,13 +230,13 @@ class TblModeloEquipo(models.Model):
         db_table = 'tbl_modelo_equipo'
 
 
-class ProveedorModelos(models.Model):
+class TblProveedorModelos(models.Model):
     id_proveedor = models.ForeignKey('TblProveedores', models.DO_NOTHING, db_column='id_proveedor')
     id_modelo = models.ForeignKey(TblModeloEquipo, models.DO_NOTHING, db_column='id_modelo')
 
     class Meta:
         managed = False
-        db_table = 'tbl_proveedor_equipos'
+        db_table = 'tbl_proveedor_modelos'
 
 
 class TblProveedores(models.Model):
